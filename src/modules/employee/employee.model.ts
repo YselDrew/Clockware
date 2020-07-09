@@ -35,7 +35,6 @@ export class Employee extends Model {
           type: DataTypes.INTEGER(),
           allowNull: false,
         },
-
       },
       {
         sequelize,
