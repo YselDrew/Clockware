@@ -1,13 +1,14 @@
 import { DataTypes, Model, Sequelize } from "sequelize";
 import { sequelize } from "../../database";
 
-export class Client extends Model {
-  public static readonly tableName: string = "clients";
+export class Employee extends Model {
+  public static readonly tableName: string = "employees";
 
   public id: number;
-  public name: string;
-  public email: string;
-  public city: string;
+  public firstName: string;
+  public lastName: string;
+  public cityId: number;
+  public rate: number;
 
   public static prepareInit(seq: Sequelize) {
     this.init(
@@ -18,16 +19,20 @@ export class Client extends Model {
           allowNull: false,
           autoIncrement: true,
         },
-        name: {
+        firstName: {
           type: DataTypes.STRING(25),
           allowNull: false,
         },
-        email: {
-          type: DataTypes.STRING(50),
+        lastName: {
+          type: DataTypes.STRING(25),
           allowNull: false,
         },
-        city: {
-          type: DataTypes.STRING(25),
+        cityId: {
+          type: DataTypes.INTEGER(),
+          allowNull: false,
+        },
+        rate: {
+          type: DataTypes.INTEGER(),
           allowNull: false,
         },
       },
@@ -39,4 +44,4 @@ export class Client extends Model {
   }
 }
 
-Client.prepareInit(sequelize);
+Employee.prepareInit(sequelize);
