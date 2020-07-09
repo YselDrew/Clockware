@@ -1,0 +1,74 @@
+[
+    {
+        "id": 1,
+        "name": "Dwight",
+        "email": "DwightMMyers@dayrep.com",
+        "city": "Dnipro"
+    },
+    {
+        "id": 2,
+        "name": "Eugenia",
+        "email": "EugeniaERivera@teleworm.us@dayrep.com",
+        "city": "Uzhgorod"
+    },
+    {
+        "id": 3,
+        "name": "Micah",
+        "email": "MicahTBlanchard@rhyta.com",
+        "city": "Uzhgorod"
+    },
+    {
+        "id": 4,
+        "name": "David",
+        "email": "DavidLMays@dayrep.com",
+        "city": "Dnipro"
+    },
+    {
+        "id": 5,
+        "name": "Stevenson",
+        "email": "DemarcusMStevenson@armyspy.com",
+        "city": "Kyiv"
+    },
+    {
+        "id": 6,
+        "name": "Agustin",
+        "email": "AgustinSCarlson@dayrep.com",
+        "city": "Dnipro"
+    },
+    {
+        "id": 7,
+        "name": "Lisa",
+        "email": "LisaRGallo@jourrapide.com",
+        "city": "Lviv"
+    },
+    {
+        "id": 8,
+        "name": "Romero",
+        "email": "EloiseSRomero@dayrep.com",
+        "city": "Dnipro"
+    },
+    {
+        "id": 9,
+        "name": "Betty",
+        "email": "BettySMosley@armyspy.com",
+        "city": "Kyiv"
+    },
+    {
+        "id": 10,
+        "name": "John",
+        "email": "JohnOErwin@armyspy.com",
+        "city": "Dnipro"
+    },
+    {
+        "id": 11,
+        "name": "George",
+        "email": "GeorgeRSells@rhyta.com",
+        "city": "Lviv"
+    },
+    {
+        "id": 12,
+        "name": "Donald",
+        "email": "DonaldSBuchanan@teleworm.us",
+        "city": "Dnipro"
+    }
+]
