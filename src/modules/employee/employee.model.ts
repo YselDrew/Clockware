@@ -1,8 +1,8 @@
-import { DataTypes, Model, Sequelize } from "sequelize";
-import { sequelize } from "../../database";
+import { DataTypes, Model, Sequelize } from 'sequelize';
+import { sequelize } from '../../database';
 
 export class Employee extends Model {
-  public static readonly tableName: string = "employees";
+  public static readonly tableName: string = 'employees';
 
   public id: number;
   public firstName: string;
