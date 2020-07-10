@@ -5,4 +5,3 @@ export const router: Router = Router();
 
 router.get('/', cityController.findMany);
 router.get('/:id', cityController.findOneById);
-
