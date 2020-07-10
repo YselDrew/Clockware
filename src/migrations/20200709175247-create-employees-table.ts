@@ -1,5 +1,5 @@
-import { QueryInterface, DataTypes } from "sequelize";
-import { Employee } from "../modules/employee/employee.model";
+import { QueryInterface, DataTypes } from 'sequelize';
+import { Employee } from '../modules/employee/employee.model';
 
 export async function up(query: QueryInterface) {
   return query.createTable(Employee.tableName, {
