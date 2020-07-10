@@ -9,6 +9,14 @@
     "object-literal-sort-keys": false,
     "ordered-imports": false,
     "quotemark": [true, "single"],
-    "variable-name": [true, "allow-leading-underscore"]
+    "new-parens": true,
+    "no-arg": true,
+    "no-bitwise": true,
+    "no-conditional-assignment": true,
+    "variable-name": [true, "allow-leading-underscore"],
+            "no-console": {
+            "severity": "warning",
+            "options": ["debug", "info", "time", "timeEnd", "trace"]
+        }
   }
 }

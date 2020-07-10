@@ -1,8 +1,8 @@
-import { DataTypes, Model, Sequelize } from "sequelize";
-import { sequelize } from "../../database";
+import { DataTypes, Model, Sequelize } from 'sequelize';
+import { sequelize } from '../../database';
 
 export class ClockSize extends Model {
-  public static readonly tableName: string = "clockSizes";
+  public static readonly tableName: string = 'clockSizes';
 
   public id: number;
   public size: string;

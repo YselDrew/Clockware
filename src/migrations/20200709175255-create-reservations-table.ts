@@ -1,5 +1,5 @@
-import { QueryInterface, DataTypes } from "sequelize";
-import { Reservation } from "../modules/reservation/reservation.model";
+import { QueryInterface, DataTypes } from 'sequelize';
+import { Reservation } from '../modules/reservation/reservation.model';
 
 export async function up(query: QueryInterface) {
   return query.createTable(Reservation.tableName, {
