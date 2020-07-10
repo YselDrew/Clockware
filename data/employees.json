@@ -1,0 +1,86 @@
+[
+    {
+        "id": 1,
+        "firstName": "Bruce",
+        "lastName": "Uy",
+        "cityId": 1,
+        "rate": 5
+    },
+    {
+        "id": 2,
+        "firstName": "Darrell",
+        "lastName": "Travis",
+        "cityId": 1,
+        "rate": 3
+    },
+    {
+        "id": 3,
+        "firstName": "James",
+        "lastName": "Willis",
+        "cityId": 1,
+        "rate": 4
+    },
+    {
+        "id": 4,
+        "firstName": "Ellis",
+        "lastName": "Green",
+        "cityId": 2,
+        "rate": 5
+    },
+    {
+        "id": 5,
+        "firstName": "Rod",
+        "lastName": "Cutler",
+        "cityId": 1,
+        "rate": 5
+    },
+    {
+        "id": 6,
+        "firstName": "Paul",
+        "lastName": "Davis",
+        "cityId": 2,
+        "rate": 4
+    },
+    {
+        "id": 7,
+        "firstName": "Hugo",
+        "lastName": "Barrera",
+        "cityId": 1,
+        "rate": 3
+    },
+    {
+        "id": 8,
+        "firstName": "William",
+        "lastName": "Freedman",
+        "cityId": 2,
+        "rate": 3
+    },
+    {
+        "id": 9,
+        "firstName": "Gilbert",
+        "lastName": "Gordon",
+        "cityId": 1,
+        "rate": 2
+    },
+    {
+        "id": 10,
+        "firstName": "Richard",
+        "lastName": "Wright",
+        "cityId": 1,
+        "rate": 4
+    },
+    {
+        "id": 11,
+        "firstName": "Alfred",
+        "lastName": "Fox",
+        "cityId": 2,
+        "rate": 1
+    },
+    {
+        "id": 12,
+        "firstName": "John",
+        "lastName": "Klingensmith",
+        "cityId": 1,
+        "rate": 4
+    }
+]
