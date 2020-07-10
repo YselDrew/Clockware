@@ -7,6 +7,8 @@ import { router as cityRoutes } from './modules/city/city.routes';
 import { router as clockSizeRoutes } from './modules/clockSize/clockSize.routes';
 import { router as employeeRoutes } from './modules/employee/employee.routes';
 
+import { errorHandler } from './common/middlewares/error.middleware';
+
 import './database';
 
 const app: express.Express = express();
@@ -18,6 +20,8 @@ app.use('/clients', clientRoutes);
 app.use('/cities', cityRoutes);
 app.use('/clockSizes', clockSizeRoutes);
 app.use('/employees', employeeRoutes);
+
+app.use(errorHandler);
 
 const PORT: number = +process.env.PORT || 5000;
 
