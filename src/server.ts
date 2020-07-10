@@ -4,6 +4,7 @@ import * as bodyParser from 'body-parser';
 
 import { router as clientRoutes } from './modules/client/client.routes';
 import { router as cityRoutes } from './modules/city/city.routes';
+import { router as clockSizeRoutes } from './modules/clockSize/clockSize.routes';
 
 import './database';
 
@@ -14,6 +15,7 @@ app.use(cors());
 
 app.use('/clients', clientRoutes);
 app.use('/cities', cityRoutes);
+app.use('/clockSizes', clockSizeRoutes);
 
 const PORT: number = +process.env.PORT || 5000;
 
