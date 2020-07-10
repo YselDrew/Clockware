@@ -1,12 +1,12 @@
 import { Request, Response, NextFunction } from 'express';
-import { clientService } from './client.service';
-import { Client } from './client.model';
+import { clockSizeService } from './clockSize.service';
+import { ClockSize } from './clockSize.model';
 
-class ClientController {
+class ClockSizeController {
     public async findMany(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const clients: Client[] = await clientService.findMany();
-            res.json(clients);
+            const clockSizes: ClockSize[] = await clockSizeService.findMany();
+            res.json(clockSizes);
         } catch (e) {
             next(e);
         }
@@ -15,12 +15,12 @@ class ClientController {
     public async findOneById(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
             const id: number = parseInt(req.params.id);
-            const client: Client = await clientService.findOneById(id);
-            res.json(client);
+            const clockSize: ClockSize = await clockSizeService.findOneById(id);
+            res.json(clockSize);
         } catch (e) {
             next(e);
         }
     }
 }
 
-export const clientController = new ClientController();
+export const clockSizeController = new ClockSizeController();

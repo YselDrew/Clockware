@@ -1,12 +1,12 @@
 import { Request, Response, NextFunction } from 'express';
-import { clientService } from './client.service';
-import { Client } from './client.model';
+import { employeeService } from './employee.service';
+import { Employee } from './employee.model';
 
-class ClientController {
+class EmployeeController {
     public async findMany(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const clients: Client[] = await clientService.findMany();
-            res.json(clients);
+            const employees: Employee[] = await employeeService.findMany();
+            res.json(employees);
         } catch (e) {
             next(e);
         }
@@ -15,12 +15,12 @@ class ClientController {
     public async findOneById(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
             const id: number = parseInt(req.params.id);
-            const client: Client = await clientService.findOneById(id);
-            res.json(client);
+            const employee: Employee = await employeeService.findOneById(id);
+            res.json(employee);
         } catch (e) {
             next(e);
         }
     }
 }
 
-export const clientController = new ClientController();
+export const employeeController = new EmployeeController();
