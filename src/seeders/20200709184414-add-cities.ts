@@ -15,4 +15,3 @@ export async function up(query: QueryInterface) {
 export async function down(query: QueryInterface) {
   query.bulkDelete(City.tableName, null, {});
 }
-

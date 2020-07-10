@@ -1,8 +1,8 @@
-import { DataTypes, Model, Sequelize } from "sequelize";
-import { sequelize } from "../../database";
+import { DataTypes, Model, Sequelize } from 'sequelize';
+import { sequelize } from '../../database';
 
 export class Reservation extends Model {
-  public static readonly tableName: string = "reservations";
+  public static readonly tableName: string = 'reservations';
 
   public id: number;
   public clientId: number;
@@ -39,7 +39,7 @@ export class Reservation extends Model {
         date: {
           type: DataTypes.DATE(),
           allowNull: false,
-        }
+        },
       },
       {
         sequelize,

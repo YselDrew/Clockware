@@ -1,5 +1,5 @@
-import { QueryInterface, DataTypes } from "sequelize";
-import { City } from "../modules/city/city.model";
+import { QueryInterface, DataTypes } from 'sequelize';
+import { City } from '../modules/city/city.model';
 
 export async function up(query: QueryInterface) {
   return query.createTable(City.tableName, {

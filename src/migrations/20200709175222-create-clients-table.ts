@@ -1,5 +1,5 @@
-import { QueryInterface, DataTypes } from "sequelize";
-import { Client } from "../modules/client/client.model";
+import { QueryInterface, DataTypes } from 'sequelize';
+import { Client } from '../modules/client/client.model';
 
 export async function up(query: QueryInterface) {
   return query.createTable(Client.tableName, {

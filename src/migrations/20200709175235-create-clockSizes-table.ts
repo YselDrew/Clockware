@@ -1,5 +1,5 @@
-import { QueryInterface, DataTypes } from "sequelize";
-import { ClockSize } from "../modules/clockSize/clockSize.model";
+import { QueryInterface, DataTypes } from 'sequelize';
+import { ClockSize } from '../modules/clockSize/clockSize.model';
 
 export async function up(query: QueryInterface) {
   return query.createTable(ClockSize.tableName, {

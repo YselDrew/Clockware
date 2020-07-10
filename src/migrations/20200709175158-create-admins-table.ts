@@ -1,5 +1,5 @@
-import { QueryInterface, DataTypes } from "sequelize";
-import { Admin } from "../modules/admin/admin.model";
+import { QueryInterface, DataTypes } from 'sequelize';
+import { Admin } from '../modules/admin/admin.model';
 
 export async function up(query: QueryInterface) {
   return query.createTable(Admin.tableName, {
