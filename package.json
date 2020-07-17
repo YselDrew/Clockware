@@ -29,7 +29,6 @@
     "eslint": "^7.4.0",
     "nodemon": "^2.0.4",
     "sequelize-cli": "^6.2.0",
-    "sequelize-typescript": "^1.1.0",
     "tslint": "^6.1.2",
     "typescript": "^3.9.6"
   },
