@@ -9,6 +9,8 @@ import { router as employeeRoutes } from './modules/employee/employee.routes';
 
 import { errorHandler } from './common/middlewares/error.middleware';
 
+import * as dotenv from 'dotenv';
+dotenv.config();
 import './modules/models';
 import { initDatabase, sequelize } from './database';
 
