@@ -1,5 +1,4 @@
 import { DataTypes, Model, Sequelize } from 'sequelize';
-import { sequelize } from '../../database';
 
 export class Admin extends Model {
   public static readonly tableName: string = 'admins';
@@ -8,7 +7,7 @@ export class Admin extends Model {
   public login: string;
   public password: string;
 
-  public static prepareInit(seq: Sequelize) {
+  public static prepareInit(sequelize: Sequelize) {
     this.init(
       {
         id: {
@@ -33,5 +32,3 @@ export class Admin extends Model {
     );
   }
 }
-
-Admin.prepareInit(sequelize);
