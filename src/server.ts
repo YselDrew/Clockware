@@ -9,6 +9,7 @@ import { router as employeeRoutes } from './modules/employee/employee.routes';
 
 import { errorHandler } from './common/middlewares/error.middleware';
 
+import './modules/models';
 import './database';
 
 const app: express.Express = express();
