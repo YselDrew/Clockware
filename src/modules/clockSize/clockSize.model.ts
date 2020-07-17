@@ -1,5 +1,4 @@
 import { DataTypes, Model, Sequelize } from 'sequelize';
-import { sequelize } from '../../database';
 
 export class ClockSize extends Model {
   public static readonly tableName: string = 'clockSizes';
@@ -7,7 +6,7 @@ export class ClockSize extends Model {
   public id: number;
   public size: string;
 
-  public static prepareInit(seq: Sequelize) {
+  public static prepareInit(sequelize: Sequelize) {
     this.init(
       {
         id: {
@@ -28,5 +27,3 @@ export class ClockSize extends Model {
     );
   }
 }
-
-ClockSize.prepareInit(sequelize);

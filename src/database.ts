@@ -18,7 +18,6 @@ export const sequelize: Sequelize = new Sequelize(
   }
 );
 
-sequelize
-  .authenticate()
-  .then(() => console.log('Connection to DataBase is succesfuly set.'))
-  .catch((err) => console.log(err));
+export function initDatabase(seq: Sequelize): Promise<void> {
+  return seq.authenticate()
+}
