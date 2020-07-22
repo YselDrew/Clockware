@@ -36,11 +36,13 @@ export class createClientsTable1595344634363 implements MigrationInterface {
             name: 'createdAt',
             type: 'timestamp with time zone',
             isNullable: false,
+            default: 'now()'
           },
           {
             name: 'updatedAt',
             type: 'timestamp with time zone',
             isNullable: false,
+            default: 'now()'
           },
         ],
       }),
@@ -49,6 +51,6 @@ export class createClientsTable1595344634363 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-      await queryRunner.dropTable("clients");
+    await queryRunner.dropTable('clients');
   }
 }
