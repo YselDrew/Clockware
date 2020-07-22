@@ -10,6 +10,8 @@ export class createClientsTable1595344634363 implements MigrationInterface {
             name: 'id',
             type: 'int',
             isPrimary: true,
+            isGenerated: true,
+            generationStrategy: 'increment',
             isNullable: false,
           },
           {
@@ -28,6 +30,16 @@ export class createClientsTable1595344634363 implements MigrationInterface {
             name: 'city',
             type: 'varchar',
             length: '25',
+            isNullable: false,
+          },
+          {
+            name: 'createdAt',
+            type: 'timestamp with time zone',
+            isNullable: false,
+          },
+          {
+            name: 'updatedAt',
+            type: 'timestamp with time zone',
             isNullable: false,
           },
         ],

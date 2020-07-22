@@ -26,15 +26,16 @@
       "mysql": "^2.14.1"
    },
    "devDependencies": {
+      "@types/cors": "^2.8.6",
       "@types/express": "^4.17.7",
       "@types/joi": "^14.3.4",
       "@types/node": "^8.0.29",
       "eslint": "^7.4.0",
       "express-validator": "^6.6.0",
       "nodemon": "^2.0.4",
+      "ts-node": "3.3.0",
       "tslint": "^6.1.2",
-      "typescript": "3.3.3333",
-      "ts-node": "3.3.0"
+      "typescript": "3.3.3333"
    },
    "nodemonConfig": {
       "ignore": [

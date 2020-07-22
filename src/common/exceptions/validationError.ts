@@ -9,7 +9,7 @@ export class ValidationError {
     public statusCode: number;
     public errors: IValidationError[];
 
-    constructor(errors) {
+    constructor(errors: any) {
         this.statusCode = HttpStatusCode.BAD_REQUEST;
         this.errors = errors;
     }

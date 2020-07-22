@@ -3,20 +3,20 @@ import {Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColu
 @Entity({ name: 'clients' }) 
 export class Client {
     @PrimaryGeneratedColumn()
-    id: number;
+    id!: number;
 
     @Column({ type: 'varchar', length: 25 })
-    name: string;
+    name!: string;
 
     @Column({ type: 'varchar', length: 50 })
-    email: string;
+    email!: string;
 
     @Column({ type: 'varchar', length: 25 })
-    city: string;
+    city!: string;
 
     @CreateDateColumn({ type: 'timestamp' })
-    createdAt: Date;
+    createdAt!: Date;
 
     @UpdateDateColumn({ type: 'timestamp' })
-    updatedAt: Date;
+    updatedAt!: Date;
 }

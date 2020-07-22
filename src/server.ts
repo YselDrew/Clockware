@@ -2,10 +2,9 @@ import express = require('express');
 import cors = require('cors');
 import * as bodyParser from 'body-parser';
 import 'reflect-metadata';
-import { connection } from './config/typeorm.config';
 
 import { Client } from './entity/Client';
-import { getRepository } from 'typeorm';
+import { createConnection, getRepository } from 'typeorm';
 
 // import { router as clientRoutes } from './modules/client/client.routes';
 // import { router as cityRoutes } from './modules/city/city.routes';
@@ -13,19 +12,14 @@ import { getRepository } from 'typeorm';
 // import { router as employeeRoutes } from './modules/employee/employee.routes';
 
 // import { errorHandler } from './common/middlewares/error.middleware';
-
-import * as dotenv from 'dotenv';
-dotenv.config();
-
-connection
-  .connect()
-  .then(() => {
+createConnection()
+  .then((connection) => {
     const app: express.Express = express();
-    app.use(bodyParser.json({ limit: '25mb' }));
+    app.use(bodyParser.json({ limit: '5mb' }));
 
-      app.get('/clients', async (req, res, next) => {
+    app.get('/clients', async (req, res, next) => {
       try {
-        const clients = await getRepository(Client).find();
+        const clients: Client[] = await getRepository(Client).find();
         res.json(clients);
       } catch (e) {
         next(e);
@@ -33,13 +27,15 @@ connection
     });
     app.use(cors());
 
-    const PORT: number = +process.env.PORT || 5000;
+    // @ts-ignore
+    const PORT: number = +process.env.SERVER_PORT || 5000;
 
     app.listen(PORT, () => {
       console.log(`Server is running in http://localhost:${PORT}`);
     });
   })
   .catch((err) => console.log(err));
+
 // import './modules/models';
 
 // import { initDatabase, sequelize } from './database';
