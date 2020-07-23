@@ -3,8 +3,7 @@ import cors = require('cors');
 import * as bodyParser from 'body-parser';
 import 'reflect-metadata';
 
-// import { Client } from './entity/Client';
-import { createConnection, getRepository } from 'typeorm';
+import { createConnection } from 'typeorm';
 
 import { router as clientRoutes } from './modules/client/client.routes';
 // import { router as cityRoutes } from './modules/city/city.routes';
