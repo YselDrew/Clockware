@@ -4,30 +4,37 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
+  ManyToOne,
   OneToMany,
+  JoinColumn,
 } from 'typeorm';
 
+import { City } from './City';
 import { Reservation } from './Reservation';
 
-@Entity({ name: 'clients' })
-export class Client {
+@Entity({ name: 'employees' })
+export class Employee {
   @PrimaryGeneratedColumn()
   id!: number;
 
   @Column({ type: 'varchar', length: 25 })
-  name!: string;
-
-  @Column({ type: 'varchar', length: 50 })
-  email!: string;
+  firstName!: string;
 
   @Column({ type: 'varchar', length: 25 })
-  city!: string;
+  lastName!: string;
+
+  @Column({ type: 'float' })
+  rate!: number;
 
   @CreateDateColumn({ type: 'timestamp with time zone', default: () => 'NOW()' })
   createdAt!: Date;
 
   @UpdateDateColumn({ type: 'timestamp with time zone', default: () => 'NOW()' })
   updatedAt!: Date;
+
+  @ManyToOne((type) => City, (city) => city.employees)
+  @JoinColumn({ name: 'cityId' })
+  city?: City;
 
   @OneToMany((type) => Reservation, (reservation) => reservation.client)
   reservations?: Reservation[];

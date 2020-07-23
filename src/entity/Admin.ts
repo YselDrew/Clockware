@@ -4,31 +4,22 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToMany,
 } from 'typeorm';
 
-import { Reservation } from './Reservation';
-
-@Entity({ name: 'clients' })
-export class Client {
+@Entity({ name: 'admins' })
+export class Admin {
   @PrimaryGeneratedColumn()
   id!: number;
 
-  @Column({ type: 'varchar', length: 25 })
-  name!: string;
-
   @Column({ type: 'varchar', length: 50 })
-  email!: string;
+  login!: string;
 
-  @Column({ type: 'varchar', length: 25 })
-  city!: string;
+  @Column({ type: 'varchar', length: 255 })
+  password!: string;
 
   @CreateDateColumn({ type: 'timestamp with time zone', default: () => 'NOW()' })
   createdAt!: Date;
 
   @UpdateDateColumn({ type: 'timestamp with time zone', default: () => 'NOW()' })
   updatedAt!: Date;
-
-  @OneToMany((type) => Reservation, (reservation) => reservation.client)
-  reservations?: Reservation[];
 }

@@ -9,19 +9,13 @@ import {
 
 import { Reservation } from './Reservation';
 
-@Entity({ name: 'clients' })
-export class Client {
+@Entity({ name: 'clockSizes' })
+export class ClockSize {
   @PrimaryGeneratedColumn()
   id!: number;
 
   @Column({ type: 'varchar', length: 25 })
-  name!: string;
-
-  @Column({ type: 'varchar', length: 50 })
-  email!: string;
-
-  @Column({ type: 'varchar', length: 25 })
-  city!: string;
+  size!: string;
 
   @CreateDateColumn({ type: 'timestamp with time zone', default: () => 'NOW()' })
   createdAt!: Date;
@@ -29,6 +23,6 @@ export class Client {
   @UpdateDateColumn({ type: 'timestamp with time zone', default: () => 'NOW()' })
   updatedAt!: Date;
 
-  @OneToMany((type) => Reservation, (reservation) => reservation.client)
-  reservations?: Reservation[];
+  @OneToMany((type) => Reservation, (reservation) => reservation.clockSize)
+  reservations!: Reservation[];
 }
