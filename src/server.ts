@@ -6,9 +6,10 @@ import 'reflect-metadata';
 import { createConnection } from 'typeorm';
 
 import { router as clientRoutes } from './modules/client/client.routes';
-// import { router as cityRoutes } from './modules/city/city.routes';
-// import { router as clockSizeRoutes } from './modules/clockSize/clockSize.routes';
-// import { router as employeeRoutes } from './modules/employee/employee.routes';
+import { router as cityRoutes } from './modules/city/city.routes';
+import { router as clockSizeRoutes } from './modules/clockSize/clockSize.routes';
+import { router as employeeRoutes } from './modules/employee/employee.routes';
+import { router as reservationRoutes } from './modules/reservation/reservation.routes';
 
 import { errorHandler } from './common/middlewares/error.middleware';
 createConnection()
@@ -18,9 +19,10 @@ createConnection()
     app.use(cors());
 
     app.use('/clients', clientRoutes);
-//     app.use('/cities', cityRoutes);
-//     app.use('/clockSizes', clockSizeRoutes);
-//     app.use('/employees', employeeRoutes);
+    app.use('/cities', cityRoutes);
+    app.use('/clockSizes', clockSizeRoutes);
+    app.use('/employees', employeeRoutes);
+    app.use('/reservations', reservationRoutes);
 
     app.use(errorHandler);
 

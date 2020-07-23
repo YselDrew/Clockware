@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
-import { clientService } from './client.service';
+
 import { Client } from '../../entity/Client';
+import { clientService } from './client.service';
 
 class ClientController {
   public async findMany(req: Request, res: Response, next: NextFunction): Promise<void> {

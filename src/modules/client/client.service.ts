@@ -1,6 +1,7 @@
-import { Client } from '../../entity/Client';
-import { NotFound } from '../../common/exceptions';
 import { getRepository, getManager } from 'typeorm';
+import { NotFound } from '../../common/exceptions';
+
+import { Client } from '../../entity/Client';
 
 class ClientService {
   public async findMany(): Promise<Client[]> {
@@ -35,7 +36,7 @@ class ClientService {
       const updatedUser: Client = await transactionalEntityManager
         .getRepository(Client)
         .findOneOrFail(id);
-      return updatedUser; // check if work with rollback
+      return updatedUser;
     });
   }
 
@@ -49,7 +50,7 @@ class ClientService {
       }
 
       await transactionalEntityManager.getRepository(Client).remove(client);
-      return id; // check if work with rollback
+      return id;
     });
   }
 }
