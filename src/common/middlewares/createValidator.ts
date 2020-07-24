@@ -1,16 +1,16 @@
-import * as Joi from 'joi';
+import * as Joi from '@hapi/joi';
 import { Request, Response, NextFunction } from 'express';
-import { ValidationError, IValidationError } from '../exceptions/validationError';
+import { ValidationError } from '../exceptions/validationError';
 
-export const createValidator = (schema: Joi.Schema, key: string = 'body') => (
+export const createValidator = (schema: Joi.Schema) => (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  const { error } = Joi.validate(req[key], schema, { abortEarly: false });
+  const { error } = schema.validate(req.body, { abortEarly: false});
 
   if (error) {
-    const errors: IValidationError[] = error.details.map((details) => ({
+    const errors: any = error.details.map((details) => ({
       message: details.message,
       field: details.path[0],
     }));

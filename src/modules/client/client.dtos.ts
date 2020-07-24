@@ -1,4 +1,4 @@
-import * as Joi from 'joi';
+import * as Joi from '@hapi/joi';
 
 export const createClientDto = Joi.object().keys({
     name: Joi.string().min(1).max(25).required(),

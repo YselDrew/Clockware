@@ -9,8 +9,8 @@ export const router: Router = Router();
 router.get('/', clientController.findMany);
 router.get('/:id', clientController.findOneById);
 
-router.post('/', clientController.createOne);
+router.post('/', createValidator(createClientDto), clientController.createOne);
 
-router.put('/:id', clientController.updateOne);
+router.put('/:id', createValidator(updateClientDto), clientController.updateOne);
 
 router.delete('/:id', clientController.deleteOne);

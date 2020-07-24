@@ -1,13 +1,15 @@
-import { Employee } from './employee.model';
+import { getRepository } from 'typeorm';
 import { NotFound } from '../../common/exceptions';
+
+import { Employee } from '../../entity/Employee';
 
 class EmployeeService {
   public async findMany(): Promise<Employee[]> {
-    return Employee.findAll();
+    return getRepository(Employee).find();
   }
 
   public async findOneById(id: number): Promise<Employee> {
-    const employee: Employee = await Employee.findOne({ where: { id } });
+    const employee: Employee | undefined = await getRepository(Employee).findOne(id);
     if (!employee) {
       throw new NotFound(`There is no employee with id ${id}`);
     }

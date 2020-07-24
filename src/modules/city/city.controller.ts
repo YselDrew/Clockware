@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
+
 import { cityService } from './city.service';
-import { City } from './city.model';
+import { City } from '../../entity/City';
 
 class CityController {
   public async findMany(req: Request, res: Response, next: NextFunction): Promise<void> {
@@ -14,7 +15,7 @@ class CityController {
 
   public async findOneById(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const id: number = parseInt(req.params.id);
+      const id: number = parseInt(req.params.id, 10);
       const city: City = await cityService.findOneById(id);
       res.json(city);
     } catch (e) {

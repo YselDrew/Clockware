@@ -1,21 +1,16 @@
 {
-  "compilerOptions": {
-    "module": "commonjs",
-    "target": "es6",
-    "outDir": "build",
-    "sourceMap": true,
-    "allowSyntheticDefaultImports": false,
-    "resolveJsonModule": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "esModuleInterop": true,
-  },
-
-  "include": [
-    "src/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    ".vscode"
-  ]
+   "compilerOptions": {
+      "strict": true,
+      "lib": [
+         "es5",
+         "es6"
+      ],
+      "target": "es5",
+      "module": "commonjs",
+      "moduleResolution": "node",
+      "outDir": "./build",
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+      "sourceMap": true
+   }
 }
