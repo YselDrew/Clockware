@@ -1,3 +1,4 @@
-import NotFound from './notFound';
+import { NotFound } from './notFound';
+import { ValidationError } from './validationError';
 
-export { NotFound };
+export { NotFound, ValidationError };

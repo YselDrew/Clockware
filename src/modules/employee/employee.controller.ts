@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
+
+import { Employee } from '../../entity/Employee';
 import { employeeService } from './employee.service';
-import { Employee } from './employee.model';
 
 class EmployeeController {
   public async findMany(req: Request, res: Response, next: NextFunction): Promise<void> {
@@ -14,7 +15,7 @@ class EmployeeController {
 
   public async findOneById(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const id: number = parseInt(req.params.id);
+      const id: number = parseInt(req.params.id, 10);
       const employee: Employee = await employeeService.findOneById(id);
       res.json(employee);
     } catch (e) {

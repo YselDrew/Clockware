@@ -1,15 +1,15 @@
-import { Client } from './client.model';
+import { getRepository, getManager } from 'typeorm';
 import { NotFound } from '../../common/exceptions';
-import { sequelize } from '../../database';
-import { Transaction } from 'sequelize';
+
+import { Client } from '../../entity/Client';
 
 class ClientService {
   public async findMany(): Promise<Client[]> {
-    return Client.findAll();
+    return getRepository(Client).find();
   }
 
   public async findOneById(id: number): Promise<Client> {
-    const client: Client = await Client.findOne({ where: { id } });
+    const client: Client | undefined = await getRepository(Client).findOne(id);
     if (!client) {
       throw new NotFound(`There is no client with id ${id}`);
     }
@@ -17,32 +17,39 @@ class ClientService {
   }
 
   public async createOne(newClient: Client): Promise<Client> {
-    const createdClient: Client = await Client.create(newClient);
+    const createdClient: Client = await getRepository(Client).create(newClient);
+    await getRepository(Client).save(createdClient);
     return createdClient;
   }
 
   public async updateOne(id: number, updates: Client): Promise<Client> {
-    return sequelize.transaction(async (transaction: Transaction) => {
-      const client: Client = await Client.findOne({ where: { id }, transaction });
+    return getManager().transaction(async (transactionalEntityManager) => {
+      const client: Client | undefined = await transactionalEntityManager
+        .getRepository(Client)
+        .findOne(id);
       if (!client) {
         throw new NotFound(`There is no client with id ${id}`);
       }
-      const [updatedRow, [updatedClient]] = await Client.update(updates, {
-        returning: true,
-        where: { id },
-        transaction,
-      });
-      return updatedClient;
+
+      await transactionalEntityManager.getRepository(Client).update(id, updates);
+
+      const updatedUser: Client = await transactionalEntityManager
+        .getRepository(Client)
+        .findOneOrFail(id);
+      return updatedUser;
     });
   }
 
   public async deleteOne(id: number): Promise<number> {
-    return sequelize.transaction(async (transaction: Transaction) => {
-      const client: Client = await Client.findOne({ where: { id }, transaction });
+    return getManager().transaction(async (transactionalEntityManager) => {
+      const client: Client | undefined = await transactionalEntityManager
+        .getRepository(Client)
+        .findOne(id);
       if (!client) {
         throw new NotFound(`There is no client with id ${id}`);
       }
-      await Client.destroy({ where: { id }, transaction });
+
+      await transactionalEntityManager.getRepository(Client).remove(client);
       return id;
     });
   }
