@@ -7,10 +7,10 @@
       "start": "ts-node src/server.ts",
       "start:watch": "nodemon",
       "build": "rm -rf ./build && tsc",
-      "typeorm": "./node_modules/.bin/ts-node ./node_modules/typeorm/cli.js --config .env",
+      "typeorm": "./node_modules/.bin/ts-node ./node_modules/typeorm/cli.js",
       "migration:run": "npm run typeorm migration:run",
       "migration:revert": "npm run typeorm migration:revert",
-      "migration:generate": "./node_modules/.bin/ts-node ./node_modules/typeorm/cli.js --config .env migration:generate -n"
+      "migration:generate": "./node_modules/.bin/ts-node ./node_modules/typeorm/cli.js --config ./src/common/config/typeorm.config.ts migration:generate -n"
    },
    "author": "",
    "license": "ISC",

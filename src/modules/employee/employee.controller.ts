@@ -15,7 +15,7 @@ class EmployeeController {
 
   public async findOneById(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const id: number = parseInt(req.params.id, 10);
+      const id = parseInt(req.params.id, 10);
       const employee: Employee = await employeeService.findOneById(id);
       res.json(employee);
     } catch (e) {

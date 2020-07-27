@@ -15,7 +15,7 @@ class ClockSizeController {
 
   public async findOneById(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const id: number = parseInt(req.params.id, 10);
+      const id = parseInt(req.params.id, 10);
       const clockSize: ClockSize = await clockSizeService.findOneById(id);
       res.json(clockSize);
     } catch (e) {

@@ -15,7 +15,7 @@ class ReservationController {
 
   public async findOneById(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const id: number = parseInt(req.params.id, 10);
+      const id = parseInt(req.params.id, 10);
       const reservation: Reservation = await reservationService.findOneById(id);
       res.json(reservation);
     } catch (e) {

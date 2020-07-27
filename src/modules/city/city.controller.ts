@@ -15,7 +15,7 @@ class CityController {
 
   public async findOneById(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const id: number = parseInt(req.params.id, 10);
+      const id = parseInt(req.params.id, 10);
       const city: City = await cityService.findOneById(id);
       res.json(city);
     } catch (e) {
