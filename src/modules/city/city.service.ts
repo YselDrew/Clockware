@@ -33,10 +33,10 @@ class CityService {
 
       await transactionalEntityManager.getRepository(City).update(id, updates);
 
-      const updatedUser: City = await transactionalEntityManager
+      const updatedCity: City = await transactionalEntityManager
         .getRepository(City)
         .findOneOrFail(id);
-      return updatedUser;
+      return updatedCity;
     });
   }
 

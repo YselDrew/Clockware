@@ -6,7 +6,6 @@ import {
   UpdateDateColumn,
   ManyToOne,
   OneToMany,
-  JoinColumn,
 } from 'typeorm';
 
 import { City } from '../city/city.entity';
@@ -32,8 +31,10 @@ export class Employee {
   @UpdateDateColumn({ type: 'timestamp with time zone', default: () => 'NOW()' })
   updatedAt!: Date;
 
+  @Column({ type: 'integer' })
+  cityId!: number;
+
   @ManyToOne((type) => City, (city) => city.employees)
-  @JoinColumn({ name: 'cityId' })
   city?: City;
 
   @OneToMany((type) => Reservation, (reservation) => reservation.client)

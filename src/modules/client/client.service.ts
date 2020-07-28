@@ -33,10 +33,10 @@ class ClientService {
 
       await transactionalEntityManager.getRepository(Client).update(id, updates);
 
-      const updatedUser: Client = await transactionalEntityManager
+      const updatedClient: Client = await transactionalEntityManager
         .getRepository(Client)
         .findOneOrFail(id);
-      return updatedUser;
+      return updatedClient;
     });
   }
 

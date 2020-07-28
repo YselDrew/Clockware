@@ -4,7 +4,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   ManyToOne,
-  JoinColumn,
+  Column,
 } from 'typeorm';
 
 import { Client } from '../client/client.entity';
@@ -23,19 +23,30 @@ export class Reservation {
   @UpdateDateColumn({ type: 'timestamp with time zone', default: () => 'NOW()' })
   updatedAt!: Date;
 
+  @Column({ type: 'integer' })
+  clientId!: number;
+
+  @Column({ type: 'integer' })
+  employeeId!: number;
+
+  @Column({ type: 'integer' })
+  cityId!: number;
+
+  @Column({ type: 'integer' })
+  clockSizeId!: number;
+
+  @Column({ type: 'timestamp with time zone' })
+  date!: Date;
+
   @ManyToOne((type) => Client, (client) => client.reservations)
-  @JoinColumn({ name: 'clientId' })
   client!: Client;
 
   @ManyToOne((type) => Employee, (employee) => employee.reservations)
-  @JoinColumn({ name: 'employeeId' })
   employee!: Employee;
 
   @ManyToOne((type) => City, (city) => city.reservations)
-  @JoinColumn({ name: 'cityId' })
   city!: City;
 
   @ManyToOne((type) => ClockSize, (clockSize) => clockSize.reservations)
-  @JoinColumn({ name: 'clockSizeId' })
   clockSize!: ClockSize;
 }

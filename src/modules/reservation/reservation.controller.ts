@@ -22,6 +22,35 @@ class ReservationController {
       next(e);
     }
   }
+
+  public async createOne(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const createdReservation: Reservation = await reservationService.createOne(req.body);
+      res.json(createdReservation);
+    } catch (e) {
+      next(e);
+    }
+  }
+
+  public async updateOne(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const id = parseInt(req.params.id, 10);
+      const updatedReservation: Reservation = await reservationService.updateOne(id, req.body);
+      res.json(updatedReservation);
+    } catch (e) {
+      next(e);
+    }
+  }
+
+  public async deleteOne(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const id = parseInt(req.params.id, 10);
+      const deletedReservationId: number = await reservationService.deleteOne(id);
+      res.json({ id: deletedReservationId });
+    } catch (e) {
+      next(e);
+    }
+  }
 }
 
 export const reservationController = new ReservationController();
