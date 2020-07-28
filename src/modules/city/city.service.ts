@@ -15,6 +15,44 @@ class CityService {
     }
     return city;
   }
+
+  public async createOne(newCity: City): Promise<City> {
+    const createdCity: City = await getRepository(City).create(newCity);
+    await getRepository(City).save(createdCity);
+    return createdCity;
+  }
+
+  public async updateOne(id: number, updates: City): Promise<City> {
+    return getManager().transaction(async (transactionalEntityManager) => {
+      const city: City | undefined = await transactionalEntityManager
+        .getRepository(City)
+        .findOne(id);
+      if (!city) {
+        throw new NotFound(`There is no city with id ${id}`);
+      }
+
+      await transactionalEntityManager.getRepository(City).update(id, updates);
+
+      const updatedUser: City = await transactionalEntityManager
+        .getRepository(City)
+        .findOneOrFail(id);
+      return updatedUser;
+    });
+  }
+
+  public async deleteOne(id: number): Promise<number> {
+    return getManager().transaction(async (transactionalEntityManager) => {
+      const city: City | undefined = await transactionalEntityManager
+        .getRepository(City)
+        .findOne(id);
+      if (!city) {
+        throw new NotFound(`There is no city with id ${id}`);
+      }
+
+      await transactionalEntityManager.getRepository(City).remove(city);
+      return id;
+    });
+  }
 }
 
 export const cityService = new CityService();
