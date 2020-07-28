@@ -6,7 +6,7 @@ import { employeeService } from './employee.service';
 class EmployeeController {
   public async findMany(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const employees: Employee[] = await employeeService.findMany();
+      const employees: Employee[] = await employeeService.findMany(req.query);
       res.json(employees);
     } catch (e) {
       next(e);

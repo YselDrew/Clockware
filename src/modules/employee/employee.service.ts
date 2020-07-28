@@ -3,12 +3,30 @@ import { NotFound } from '../../common/exceptions';
 
 import { Employee } from './employee.entity';
 
+import { paginationService } from '../pagination/pagination.service';
+
 class EmployeeService {
-  public async findMany(): Promise<Employee[]> {
-    return getRepository(Employee).find({
+  public async findMany(query: any): Promise<any> {
+    let { page, limit } = query;
+    const total: number = await getRepository(Employee).count();
+    const { offset, actualPage } = paginationService.getOffset(page, limit, total);
+    page = actualPage;
+
+    const employees: Employee[] = await getRepository(Employee).find({
       relations: ['city'],
       order: { id: 'ASC' },
+      skip: offset,
+      take: limit,
     });
+
+    return {
+      data: employees,
+      pagination: {
+        page,
+        total,
+        limit,
+      },
+    };
   }
 
   public async findOneById(id: number): Promise<Employee> {
