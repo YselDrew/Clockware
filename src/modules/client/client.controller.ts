@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 
-import { Client } from '../../entity/Client';
+import { Client } from './client.entity';
 import { clientService } from './client.service';
 
 class ClientController {

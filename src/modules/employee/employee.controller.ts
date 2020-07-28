@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 
-import { Employee } from '../../entity/Employee';
+import { Employee } from './employee.entity';
 import { employeeService } from './employee.service';
 
 class EmployeeController {

@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 
-import { Reservation } from '../../entity/Reservation';
+import { Reservation } from './reservation.entity';
 import { reservationService } from './reservation.service';
 
 class ReservationController {

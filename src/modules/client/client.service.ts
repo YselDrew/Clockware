@@ -1,7 +1,7 @@
 import { getRepository, getManager } from 'typeorm';
 import { NotFound } from '../../common/exceptions';
 
-import { Client } from '../../entity/Client';
+import { Client } from './client.entity';
 
 class ClientService {
   public async findMany(): Promise<Client[]> {

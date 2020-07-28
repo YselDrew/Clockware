@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 
 import { cityService } from './city.service';
-import { City } from '../../entity/City';
+import { City } from './city.entity';
 
 class CityController {
   public async findMany(req: Request, res: Response, next: NextFunction): Promise<void> {

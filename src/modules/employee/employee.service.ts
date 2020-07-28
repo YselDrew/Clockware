@@ -1,7 +1,7 @@
 import { getRepository } from 'typeorm';
 import { NotFound } from '../../common/exceptions';
 
-import { Employee } from '../../entity/Employee';
+import { Employee } from './employee.entity';
 
 class EmployeeService {
   public async findMany(): Promise<Employee[]> {

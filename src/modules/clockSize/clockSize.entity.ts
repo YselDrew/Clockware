@@ -7,7 +7,7 @@ import {
   OneToMany,
 } from 'typeorm';
 
-import { Reservation } from './Reservation';
+import { Reservation } from '../reservation/reservation.entity';
 
 @Entity({ name: 'clockSizes' })
 export class ClockSize {

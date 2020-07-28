@@ -1,7 +1,7 @@
 import { getManager, getRepository } from 'typeorm';
 import { NotFound } from '../../common/exceptions';
 
-import { City } from '../../entity/City';
+import { City } from './city.entity';
 
 class CityService {
   public async findMany(): Promise<City[]> {

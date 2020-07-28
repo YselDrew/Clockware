@@ -7,10 +7,10 @@ import {
   JoinColumn,
 } from 'typeorm';
 
-import { Client } from './Client';
-import { Employee } from './Employee';
-import { City } from './City';
-import { ClockSize } from './ClockSize';
+import { Client } from '../client/client.entity';
+import { Employee } from '../employee/employee.entity';
+import { City } from '../city/city.entity';
+import { ClockSize } from '../clockSize/clockSize.entity';
 
 @Entity({ name: 'reservations' })
 export class Reservation {

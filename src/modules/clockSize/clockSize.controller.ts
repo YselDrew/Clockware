@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 
-import { ClockSize } from '../../entity/ClockSize';
+import { ClockSize } from './clockSize.entity';
 import { clockSizeService } from './clockSize.service';
 
 class ClockSizeController {

@@ -1,7 +1,7 @@
 import { getRepository } from 'typeorm';
 import { NotFound } from '../../common/exceptions';
 
-import { Reservation } from '../../entity/Reservation';
+import { Reservation } from './reservation.entity';
 
 class ReservationService {
   public async findMany(): Promise<Reservation[]> {
