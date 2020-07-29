@@ -17,6 +17,9 @@ export class ClockSize {
   @Column({ type: 'varchar', length: 25 })
   size!: string;
 
+  @Column({ type: 'float' })
+  amountOfHours!: number;
+
   @CreateDateColumn({ type: 'timestamp with time zone', default: () => 'NOW()' })
   createdAt!: Date;
 

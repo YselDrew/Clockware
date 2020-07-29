@@ -5,6 +5,7 @@ import { Employee } from './employee.entity';
 
 import { paginationService } from '../pagination/pagination.service';
 import { IOffset, IPaginatedData } from '../../common/interfaces/pagination.interfaces';
+import { IEmployeeUpdates } from '../../common/interfaces/employee.interfaces';
 
 class EmployeeService {
   public async findMany(query: any): Promise<IPaginatedData<Employee[]>> {
@@ -12,7 +13,7 @@ class EmployeeService {
     const cityId = parseInt(query.cityId, 10);
 
     const page = parseInt(query.page, 10);
-    const limit = parseInt(query.page, 10);
+    const limit = parseInt(query.limit, 10);
 
     return getManager().transaction(async (transactionalEntityManager) => {
       const total: number = await transactionalEntityManager.getRepository(Employee).count({
@@ -57,7 +58,7 @@ class EmployeeService {
     return createdEmployee;
   }
 
-  public async updateOne(id: number, updates: Employee): Promise<Employee> {
+  public async updateOne(id: number, updates: IEmployeeUpdates): Promise<Employee> {
     return getManager().transaction(async (transactionalEntityManager) => {
       const employee: Employee | undefined = await transactionalEntityManager
         .getRepository(Employee)

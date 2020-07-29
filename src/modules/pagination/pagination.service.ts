@@ -1,7 +1,7 @@
 import { IOffset } from '../../common/interfaces/pagination.interfaces';
 
 class PaginationService {
-  public getOffset(page: number = 1, limit: number = 25, total: number): IOffset {
+  public getOffset(page: number = 1, limit: number = 9, total: number): IOffset {
     let offset: number = (page - 1) * limit;
     let currentPage: number = page;
 

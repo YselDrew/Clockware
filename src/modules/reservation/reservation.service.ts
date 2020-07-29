@@ -3,6 +3,12 @@ import { NotFound } from '../../common/exceptions';
 
 import { Reservation } from './reservation.entity';
 
+import { clientService } from '../client/client.service';
+import { employeeService } from '../employee/employee.service';
+import { cityService } from '../city/city.service';
+import { clockSizeService } from '../clockSize/clockSize.service';
+import { IEmployeeUpdates } from '../../common/interfaces/employee.interfaces';
+
 class ReservationService {
   public async findMany(): Promise<Reservation[]> {
     return getRepository(Reservation).find({
@@ -21,12 +27,31 @@ class ReservationService {
     return reservation;
   }
 
+  private incrementTime(date: Date, amountOfHours: number): Date {
+    const startTime: number = Date.parse(date.toString());
+    const timeInterval: number = 1000 * 60 * 60 * amountOfHours;
+    const endTime = new Date(startTime + timeInterval);
+    return endTime;
+  }
+
   public async createOne(newReservation: Reservation): Promise<Reservation> {
+    const { clientId, employeeId, cityId, clockSizeId, date }: Reservation = newReservation;
+
     return getManager().transaction(async (transactionalEntityManager) => {
+      await clientService.findOneById(clientId);
+      await cityService.findOneById(cityId);
+
+      const { amountOfHours } = await clockSizeService.findOneById(clockSizeId);
+      const endTime: Date = this.incrementTime(date, amountOfHours);
+
+      const employeeUpdate: IEmployeeUpdates = { availableFrom: endTime };
+      await employeeService.updateOne(employeeId, employeeUpdate);
+
       const createdReservation: Reservation = await transactionalEntityManager
         .getRepository(Reservation)
         .create(newReservation);
       await transactionalEntityManager.getRepository(Reservation).save(createdReservation);
+
       return createdReservation;
     });
   }
