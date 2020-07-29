@@ -1,32 +1,43 @@
-import { getRepository, getManager } from 'typeorm';
+import { getRepository, getManager, LessThanOrEqual } from 'typeorm';
 import { NotFound } from '../../common/exceptions';
 
 import { Employee } from './employee.entity';
 
 import { paginationService } from '../pagination/pagination.service';
+import { IOffset, IPaginatedData } from '../../common/interfaces/pagination.interfaces';
 
 class EmployeeService {
-  public async findMany(query: any): Promise<any> {
-    let { page, limit } = query;
-    const total: number = await getRepository(Employee).count();
-    const { offset, actualPage } = paginationService.getOffset(page, limit, total);
-    page = actualPage;
+  public async findMany(query: any): Promise<IPaginatedData<Employee[]>> {
+    const time: Date = query.time;
+    const cityId = parseInt(query.cityId, 10);
 
-    const employees: Employee[] = await getRepository(Employee).find({
-      relations: ['city'],
-      order: { id: 'ASC' },
-      skip: offset,
-      take: limit,
+    const page = parseInt(query.page, 10);
+    const limit = parseInt(query.page, 10);
+
+    return getManager().transaction(async (transactionalEntityManager) => {
+      const total: number = await transactionalEntityManager.getRepository(Employee).count({
+        where: { cityId, availableFrom: LessThanOrEqual(time) },
+      });
+
+      const { offset, currentPage }: IOffset = paginationService.getOffset(page, limit, total);
+
+      const employees: Employee[] = await transactionalEntityManager.getRepository(Employee).find({
+        relations: ['city'],
+        order: { id: 'ASC' },
+        where: { cityId, availableFrom: LessThanOrEqual(time) },
+        skip: offset,
+        take: limit,
+      });
+
+      return {
+        data: employees,
+        pagination: {
+          page: currentPage,
+          total,
+          limit,
+        },
+      };
     });
-
-    return {
-      data: employees,
-      pagination: {
-        page,
-        total,
-        limit,
-      },
-    };
   }
 
   public async findOneById(id: number): Promise<Employee> {

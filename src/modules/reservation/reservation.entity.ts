@@ -38,15 +38,15 @@ export class Reservation {
   @Column({ type: 'timestamp with time zone' })
   date!: Date;
 
-  @ManyToOne((type) => Client, (client) => client.reservations)
+  @ManyToOne((type) => Client, (client) => client.reservations, { onDelete: 'CASCADE' })
   client!: Client;
 
-  @ManyToOne((type) => Employee, (employee) => employee.reservations)
+  @ManyToOne((type) => Employee, (employee) => employee.reservations, { onDelete: 'CASCADE' })
   employee!: Employee;
 
-  @ManyToOne((type) => City, (city) => city.reservations)
+  @ManyToOne((type) => City, (city) => city.reservations, { onDelete: 'CASCADE' })
   city!: City;
 
-  @ManyToOne((type) => ClockSize, (clockSize) => clockSize.reservations)
+  @ManyToOne((type) => ClockSize, (clockSize) => clockSize.reservations, { onDelete: 'CASCADE' })
   clockSize!: ClockSize;
 }

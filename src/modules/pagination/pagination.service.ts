@@ -1,21 +1,18 @@
-interface IpaginationData {
-  offset: number;
-  actualPage: number;
-}
+import { IOffset } from '../../common/interfaces/pagination.interfaces';
 
 class PaginationService {
-  public getOffset(page: number = 1, limit: number = 25, total: number): any {
+  public getOffset(page: number = 1, limit: number = 25, total: number): IOffset {
     let offset: number = (page - 1) * limit;
-    let actualPage = page;
+    let currentPage: number = page;
 
     if (total <= offset || page < 1) {
       offset = 0;
-      actualPage = 1;
+      currentPage = 1;
     }
 
     return {
       offset,
-      actualPage,
+      currentPage,
     };
   }
 }

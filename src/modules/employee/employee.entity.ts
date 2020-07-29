@@ -25,6 +25,9 @@ export class Employee {
   @Column({ type: 'float' })
   rate!: number;
 
+  @Column({ type: 'timestamp with time zone', default: () => 'NOW()' })
+  availableFrom!: Date;
+
   @CreateDateColumn({ type: 'timestamp with time zone', default: () => 'NOW()' })
   createdAt!: Date;
 
