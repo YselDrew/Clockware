@@ -7,7 +7,7 @@ import {
   OneToMany,
 } from 'typeorm';
 
-import { Reservation } from './Reservation';
+import { Reservation } from '../reservation/reservation.entity';
 
 @Entity({ name: 'clockSizes' })
 export class ClockSize {
@@ -16,6 +16,9 @@ export class ClockSize {
 
   @Column({ type: 'varchar', length: 25 })
   size!: string;
+
+  @Column({ type: 'float' })
+  amountOfHours!: number;
 
   @CreateDateColumn({ type: 'timestamp with time zone', default: () => 'NOW()' })
   createdAt!: Date;

@@ -1,7 +1,7 @@
 import { getRepository, getManager } from 'typeorm';
 import { NotFound } from '../../common/exceptions';
 
-import { Client } from '../../entity/Client';
+import { Client } from './client.entity';
 
 class ClientService {
   public async findMany(): Promise<Client[]> {
@@ -17,9 +17,21 @@ class ClientService {
   }
 
   public async createOne(newClient: Client): Promise<Client> {
-    const createdClient: Client = await getRepository(Client).create(newClient);
-    await getRepository(Client).save(createdClient);
-    return createdClient;
+    return getManager().transaction(async (transactionalEntityManager) => {
+      const existedClient: Client | undefined = await transactionalEntityManager
+        .getRepository(Client)
+        .findOne({ where: { email: newClient.email } });
+
+      if (!existedClient) {
+        const createdClient: Client = await transactionalEntityManager
+          .getRepository(Client)
+          .create(newClient);
+        await getRepository(Client).save(createdClient);
+        return createdClient;
+      }
+
+      return existedClient;
+    });
   }
 
   public async updateOne(id: number, updates: Client): Promise<Client> {
@@ -33,10 +45,10 @@ class ClientService {
 
       await transactionalEntityManager.getRepository(Client).update(id, updates);
 
-      const updatedUser: Client = await transactionalEntityManager
+      const updatedClient: Client = await transactionalEntityManager
         .getRepository(Client)
         .findOneOrFail(id);
-      return updatedUser;
+      return updatedClient;
     });
   }
 
