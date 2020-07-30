@@ -2,11 +2,13 @@ import { getRepository, getManager } from 'typeorm';
 import { NotFound } from '../../common/exceptions';
 
 import { Reservation } from './reservation.entity';
+import { ClockSize } from '../clockSize/clockSize.entity';
 
 import { clientService } from '../client/client.service';
 import { employeeService } from '../employee/employee.service';
 import { cityService } from '../city/city.service';
 import { clockSizeService } from '../clockSize/clockSize.service';
+
 import { IEmployeeUpdates } from '../../common/interfaces/employee.interfaces';
 
 class ReservationService {
@@ -27,13 +29,6 @@ class ReservationService {
     return reservation;
   }
 
-  private incrementTime(date: Date, amountOfHours: number): Date {
-    const startTime: number = Date.parse(date.toString());
-    const timeInterval: number = 1000 * 60 * 60 * amountOfHours;
-    const endTime = new Date(startTime + timeInterval);
-    return endTime;
-  }
-
   public async createOne(newReservation: Reservation): Promise<Reservation> {
     const { clientId, employeeId, cityId, clockSizeId, date }: Reservation = newReservation;
 
@@ -41,11 +36,11 @@ class ReservationService {
       await clientService.findOneById(clientId);
       await cityService.findOneById(cityId);
 
-      const { amountOfHours } = await clockSizeService.findOneById(clockSizeId);
+      const { amountOfHours }: ClockSize = await clockSizeService.findOneById(clockSizeId);
       const endTime: Date = this.incrementTime(date, amountOfHours);
 
-      const employeeUpdate: IEmployeeUpdates = { availableFrom: endTime };
-      await employeeService.updateOne(employeeId, employeeUpdate);
+      const employeeUpdateTime: IEmployeeUpdates = { availableFrom: endTime };
+      await employeeService.updateOne(employeeId, employeeUpdateTime);
 
       const createdReservation: Reservation = await transactionalEntityManager
         .getRepository(Reservation)
@@ -54,6 +49,13 @@ class ReservationService {
 
       return createdReservation;
     });
+  }
+
+  private incrementTime(date: Date, amountOfHours: number): Date {
+    const startTime: number = Date.parse(date.toString());
+    const timeInterval: number = 1000 * 60 * 60 * amountOfHours;
+    const endTime = new Date(startTime + timeInterval);
+    return endTime;
   }
 
   public async updateOne(id: number, updates: Reservation): Promise<Reservation> {
