@@ -1,6 +1,6 @@
 import * as Joi from '@hapi/joi';
 import { Request, Response, NextFunction } from 'express';
-import { ValidationError } from '../exceptions/validationError';
+import { ValidationError } from '../exceptions';
 
 export const createValidator = (schema: Joi.Schema) => (
   req: Request,

@@ -6,11 +6,10 @@ import {
   UpdateDateColumn,
   ManyToOne,
   OneToMany,
-  JoinColumn,
 } from 'typeorm';
 
-import { City } from './City';
-import { Reservation } from './Reservation';
+import { City } from '../city/city.entity';
+import { Reservation } from '../reservation/reservation.entity';
 
 @Entity({ name: 'employees' })
 export class Employee {
@@ -26,14 +25,19 @@ export class Employee {
   @Column({ type: 'float' })
   rate!: number;
 
+  @Column({ type: 'timestamp with time zone', default: () => 'NOW()' })
+  availableFrom!: Date;
+
   @CreateDateColumn({ type: 'timestamp with time zone', default: () => 'NOW()' })
   createdAt!: Date;
 
   @UpdateDateColumn({ type: 'timestamp with time zone', default: () => 'NOW()' })
   updatedAt!: Date;
 
+  @Column({ type: 'integer' })
+  cityId!: number;
+
   @ManyToOne((type) => City, (city) => city.employees)
-  @JoinColumn({ name: 'cityId' })
   city?: City;
 
   @OneToMany((type) => Reservation, (reservation) => reservation.client)

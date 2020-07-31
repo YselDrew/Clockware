@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 
-import { Client } from '../../entity/Client';
+import { Client } from './client.entity';
 import { clientService } from './client.service';
 
 class ClientController {
@@ -15,7 +15,7 @@ class ClientController {
 
   public async findOneById(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const id: number = parseInt(req.params.id, 10);
+      const id = parseInt(req.params.id, 10);
       const client: Client = await clientService.findOneById(id);
       res.json(client);
     } catch (e) {
@@ -34,7 +34,7 @@ class ClientController {
 
   public async updateOne(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const id: number = parseInt(req.params.id, 10);
+      const id = parseInt(req.params.id, 10);
       const updatedClient: Client = await clientService.updateOne(id, req.body);
       res.json(updatedClient);
     } catch (e) {
@@ -44,7 +44,7 @@ class ClientController {
 
   public async deleteOne(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const id: number = parseInt(req.params.id, 10);
+      const id = parseInt(req.params.id, 10);
       const deletedClientId: number = await clientService.deleteOne(id);
       res.json({ id: deletedClientId });
     } catch (e) {

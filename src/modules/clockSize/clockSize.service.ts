@@ -1,7 +1,7 @@
 import { getRepository } from 'typeorm'
 import { NotFound } from '../../common/exceptions';
 
-import { ClockSize } from '../../entity/ClockSize';
+import { ClockSize } from './clockSize.entity';
 
 class ClockSizeService {
   public async findMany(): Promise<ClockSize[]> {

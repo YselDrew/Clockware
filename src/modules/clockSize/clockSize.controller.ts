@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 
-import { ClockSize } from '../../entity/ClockSize';
+import { ClockSize } from './clockSize.entity';
 import { clockSizeService } from './clockSize.service';
 
 class ClockSizeController {
@@ -15,7 +15,7 @@ class ClockSizeController {
 
   public async findOneById(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const id: number = parseInt(req.params.id, 10);
+      const id = parseInt(req.params.id, 10);
       const clockSize: ClockSize = await clockSizeService.findOneById(id);
       res.json(clockSize);
     } catch (e) {
