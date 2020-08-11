@@ -4,15 +4,15 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
 @Injectable()
-export class ClientSignupService {
+export class ReservationFormService {
   private api = environment.API_URL;
   constructor(private http: HttpClient) {}
 
-  postClient(client: any) {
-    return this.http.post(`${this.api}/clients`, client);
+  getClockSizes() {
+    return this.http.get(`${this.api}/clockSizes`);
   }
 
-  addToLocalStorage(client: any) {
-    localStorage.setItem('client', JSON.stringify(client));
+  getCities() {
+    return this.http.get(`${this.api}/cities`);
   }
 }

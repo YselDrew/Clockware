@@ -12,6 +12,8 @@ import { StartingPageComponent } from './starting-page/starting-page.component';
 import { ClientSignupComponent } from './client-signup/client-signup.component';
 import { ReservationFormComponent } from './reservation-form/reservation-form.component';
 
+import { AuthGuard } from './client-signup/auth.guard';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -25,7 +27,7 @@ import { ReservationFormComponent } from './reservation-form/reservation-form.co
     ClientSignupComponent,
     ReservationFormComponent,
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

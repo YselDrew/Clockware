@@ -12,11 +12,11 @@ import { ClientSignupService } from './client-signup.service';
 })
 export class ClientSignupComponent implements OnInit {
   newClientForm: FormGroup;
-  recievedClient: any;
-
   name: FormControl;
   email: FormControl;
   city: FormControl;
+
+  recievedClient: any;
 
   constructor(
     private router: Router,
@@ -56,6 +56,7 @@ export class ClientSignupComponent implements OnInit {
     this.clientSignupService.postClient(newClient).subscribe(
       (client: any) => {
         this.recievedClient = client;
+        this.clientSignupService.addToLocalStorage(this.recievedClient);
         this.router.navigate(['/reservation']);
         console.log(this.recievedClient);
       },
