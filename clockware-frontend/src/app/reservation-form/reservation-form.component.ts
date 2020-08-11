@@ -2,18 +2,13 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-signup-form',
-  templateUrl: './client-signup.component.html',
+  templateUrl: './reservation-form.component.html',
   styleUrls: ['../shared/styles/form.styles.css'],
 })
-export class ClientSignupComponent {
+export class ReservationFormComponent {
   constructor(private router: Router) {}
 
-  signUp() {
-    this.router.navigate(['/reservation']);
-  }
-
   cancel() {
-    this.router.navigate(['/']);
+    this.router.navigate(['/signup']);
   }
 }

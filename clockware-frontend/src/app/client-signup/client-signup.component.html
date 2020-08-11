@@ -37,7 +37,9 @@
         placeholder="Your city here"
       />
       <div class="buttons text-center">
-        <button type="submit" class="btn btn-primary">Sign Up</button>
+        <button (click)="signUp()" type="submit" class="btn btn-primary">
+          Sign Up
+        </button>
         <button (click)="cancel()" type="button" class="btn btn-default">
           Cancel
         </button>

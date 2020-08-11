@@ -5,13 +5,19 @@ import { AppComponent } from './app.component';
 
 import { StartingPageComponent } from './starting-page/starting-page.component';
 import { ClientSignupComponent } from './client-signup/client-signup.component';
+import { ReservationFormComponent } from './reservation-form/reservation-form.component';
 
 import { appRoutes } from './routes';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [BrowserModule, RouterModule.forRoot(appRoutes)],
-  declarations: [AppComponent, StartingPageComponent, ClientSignupComponent],
+  declarations: [
+    AppComponent,
+    StartingPageComponent,
+    ClientSignupComponent,
+    ReservationFormComponent,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
