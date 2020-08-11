@@ -1,5 +1,10 @@
 <div class="login-form">
-  <form autocapitalize="off" novalidate>
+  <form
+    autocapitalize="off"
+    novalidate
+    [formGroup]="makeReservationForm"
+    (ngSubmit)="findEmployee()"
+  >
     <h2 class="text-center">Make Reservation</h2>
     <div class="from-group">
       <label for="size">Size</label>

@@ -2,21 +2,26 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
+import { ClientSignupService } from './client-signup.service';
+
 @Component({
   selector: 'app-signup-form',
   templateUrl: './client-signup.component.html',
   styleUrls: ['../shared/styles/form.styles.css'],
+  providers: [ClientSignupService],
 })
 export class ClientSignupComponent implements OnInit {
   newClientForm: FormGroup;
+  recievedClient: any;
 
   name: FormControl;
   email: FormControl;
   city: FormControl;
 
-  isDirty = true;
-
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private clientSignupService: ClientSignupService
+  ) {}
 
   ngOnInit() {
     this.name = new FormControl('', [
@@ -43,24 +48,20 @@ export class ClientSignupComponent implements OnInit {
   }
 
   saveClient(formValues) {
-    const client = {
+    const newClient: any = {
       name: formValues.name,
       email: formValues.email,
       city: formValues.city,
     };
-    this.isDirty = false;
-    console.log(client);
+    this.clientSignupService.postClient(newClient).subscribe(
+      (client: any) => {
+        this.recievedClient = client;
+        this.router.navigate(['/reservation']);
+        console.log(this.recievedClient);
+      },
+      (error) => console.log(error)
+    );
   }
-
-  // signUp() {
-  //   const client = {
-  //     name: this.name,
-  //     email: this.email,
-  //     city: this.city,
-  //   };
-  //   console.log(client);
-  //   // this.router.navigate(['/reservation']);
-  // }
 
   cancel() {
     this.router.navigate(['/']);
