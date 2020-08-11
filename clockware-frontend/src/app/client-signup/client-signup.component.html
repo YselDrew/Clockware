@@ -1,0 +1,47 @@
+<div class="login-form">
+  <form autocapitalize="off" novalidate>
+    <h2 class="text-center">Sign Up</h2>
+    <div class="from-group">
+      <label for="name">Name</label>
+      <em>Required</em>
+      <input
+        name="name"
+        required
+        id="name"
+        type="text"
+        class="form-control"
+        placeholder="Your name here"
+      />
+    </div>
+    <div class="from-group">
+      <label for="email">Email</label>
+      <em>Required</em>
+      <input
+        name="email"
+        required
+        id="email"
+        type="text"
+        class="form-control"
+        placeholder="Your email here"
+      />
+    </div>
+    <div class="from-group">
+      <label for="city">City</label>
+      <em>Required</em>
+      <input
+        name="city"
+        required
+        id="city"
+        type="text"
+        class="form-control"
+        placeholder="Your city here"
+      />
+      <div class="buttons text-center">
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+        <button (click)="cancel()" type="button" class="btn btn-default">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
