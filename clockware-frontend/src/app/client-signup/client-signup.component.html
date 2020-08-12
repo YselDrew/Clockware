@@ -1,0 +1,100 @@
+<div class="login-form">
+  <form
+    autocapitalize="off"
+    novalidate
+    [formGroup]="newClientForm"
+    (ngSubmit)="saveClient(newClientForm.value)"
+  >
+    <h2 class="text-center">Sign Up</h2>
+    <div
+      class="from-group"
+      [ngClass]="{
+        error: name?.invalid && name?.dirty
+      }"
+    >
+      <label for="name">Name</label>
+      <em *ngIf="name?.invalid && name?.dirty && name?.errors.required"
+        >Required</em
+      >
+      <em *ngIf="name?.invalid && name?.dirty && name?.errors.pattern"
+        >Invalid name</em
+      >
+      <em *ngIf="name?.invalid && name?.dirty && name?.errors.minlength"
+        >Name is too short</em
+      >
+      <em *ngIf="name?.invalid && name?.dirty && name?.errors.maxlength"
+        >Name is too long</em
+      >
+      <input
+        formControlName="name"
+        name="name"
+        required
+        id="name"
+        type="text"
+        class="form-control"
+        placeholder="Your name here"
+      />
+    </div>
+    <div
+      class="from-group"
+      [ngClass]="{
+        error: email?.invalid && email?.dirty
+      }"
+    >
+      <label for="email">Email</label>
+      <em *ngIf="email?.invalid && email?.dirty && email?.errors.required"
+        >Required</em
+      >
+      <em *ngIf="email?.invalid && email?.dirty && email?.errors.pattern"
+        >Invalid email</em
+      >
+      <input
+        formControlName="email"
+        name="email"
+        required
+        id="email"
+        type="text"
+        class="form-control"
+        placeholder="Your email here"
+      />
+    </div>
+    <div
+      class="from-group"
+      [ngClass]="{
+        error: city?.invalid && city?.dirty
+      }"
+    >
+      <label for="city">City</label>
+      <em *ngIf="city?.invalid && city?.dirty && city?.errors.required"
+        >Required</em
+      >
+      <em *ngIf="city?.invalid && city?.dirty && city?.errors.pattern"
+        >Invalid city</em
+      >
+      <em *ngIf="city?.invalid && city?.dirty && city?.errors.minlength"
+        >City name is too short</em
+      >
+      <input
+        formControlName="city"
+        name="city"
+        required
+        id="city"
+        type="text"
+        class="form-control"
+        placeholder="Your city here"
+      />
+      <div class="buttons text-center">
+        <button
+          [disabled]="newClientForm.invalid"
+          type="submit"
+          class="btn btn-primary"
+        >
+          Sign Up
+        </button>
+        <button (click)="cancel()" type="button" class="btn btn-default">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
