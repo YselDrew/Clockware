@@ -1,0 +1,74 @@
+<div class="login-form">
+  <h1 *ngIf="!loaded">Loading...</h1>
+  <form
+    *ngIf="loaded"
+    autocapitalize="off"
+    novalidate
+    [formGroup]="makeReservationForm"
+    (ngSubmit)="findEmployee(makeReservationForm.value)"
+  >
+    <h2 class="text-center">Make Reservation</h2>
+    <div class="from-group">
+      <label for="size">Size</label>
+      <em *ngIf="size?.invalid && size?.touched">Required</em>
+      <select
+        class="form-control"
+        formControlName="size"
+        name="size"
+        id="size"
+        required
+      >
+        <option selected="selected" disabled hidden value=""
+          >--Choose size--</option
+        >
+        <option
+          *ngFor="let clockSize of clockSizes"
+          value="{{ clockSize?.id }}"
+          >{{ clockSize?.size }}</option
+        >
+      </select>
+    </div>
+    <div class="from-group">
+      <label for="city">City</label>
+      <em *ngIf="city?.invalid && city?.touched">Required</em>
+      <select
+        class="form-control"
+        formControlName="city"
+        name="city"
+        id="city"
+        required
+      >
+        <option selected="selected" disabled hidden value=""
+          >--Choose city--</option
+        >
+        <option *ngFor="let city of cities" value="{{ city?.id }}">{{
+          city?.name
+        }}</option>
+      </select>
+    </div>
+    <div class="from-group">
+      <label for="date">Date</label>
+      <em *ngIf="date?.invalid && date?.touched">Required</em>
+      <input
+        formControlName="date"
+        name="date"
+        id="date"
+        required
+        type="datetime-local"
+        class="form-control"
+      />
+      <div class="buttons text-center">
+        <button
+          [disabled]="makeReservationForm.invalid"
+          type="submit"
+          class="btn btn-primary"
+        >
+          Find
+        </button>
+        <button (click)="cancel()" type="button" class="btn btn-default">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
