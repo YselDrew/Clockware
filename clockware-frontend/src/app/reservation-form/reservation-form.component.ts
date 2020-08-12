@@ -37,11 +37,11 @@ export class ReservationFormComponent implements OnInit {
     });
 
     // FIX: rewrite as one-by-one request
-    this.reservationFormService.getClockSizes().subscribe((clockSizes) => {
+    this.reservationFormService.getClockSizes().subscribe((clockSizes: any) => {
       this.clockSizes = clockSizes;
     });
 
-    this.reservationFormService.getCities().subscribe((cities) => {
+    this.reservationFormService.getCities().subscribe((cities: any) => {
       this.cities = cities;
     });
 
@@ -50,11 +50,13 @@ export class ReservationFormComponent implements OnInit {
 
   findEmployee(formValues) {
     const reservationDetails = {
-      size: formValues.size,
-      city: formValues.city,
-      date: formValues.date,
+      sizeId: formValues.size,
+      cityId: formValues.city,
+      time: `${formValues.date}:00.000Z`, // FIX: check how to fix that properly
     };
     console.log(reservationDetails);
+
+    this.router.navigate(['/employees']);
   }
 
   cancel() {

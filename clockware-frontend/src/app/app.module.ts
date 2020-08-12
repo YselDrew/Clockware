@@ -8,9 +8,11 @@ import { AppComponent } from './app.component';
 
 import { appRoutes } from './routes';
 
-import { StartingPageComponent } from './starting-page/starting-page.component';
+import { StartPageComponent } from './start-page/start-page.component';
 import { ClientSignupComponent } from './client-signup/client-signup.component';
 import { ReservationFormComponent } from './reservation-form/reservation-form.component';
+import { EmployeesComponent } from './employees/employees.component';
+import { Error404Component } from './errors/404.component';
 
 import { AuthGuard } from './client-signup/auth.guard';
 
@@ -23,9 +25,11 @@ import { AuthGuard } from './client-signup/auth.guard';
   ],
   declarations: [
     AppComponent,
-    StartingPageComponent,
+    StartPageComponent,
     ClientSignupComponent,
     ReservationFormComponent,
+    EmployeesComponent,
+    Error404Component,
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent],

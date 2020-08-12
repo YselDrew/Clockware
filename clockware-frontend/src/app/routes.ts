@@ -1,11 +1,15 @@
 import { Routes } from '@angular/router';
-import { StartingPageComponent } from './starting-page/starting-page.component';
+
+import { StartPageComponent } from './start-page/start-page.component';
 import { ClientSignupComponent } from './client-signup/client-signup.component';
 import { ReservationFormComponent } from './reservation-form/reservation-form.component';
+import { EmployeesComponent } from './employees/employees.component';
+import { Error404Component } from './errors/404.component';
+
 import { AuthGuard } from './client-signup/auth.guard';
 
 export const appRoutes: Routes = [
-  { path: '', component: StartingPageComponent },
+  { path: '', component: StartPageComponent },
   {
     path: 'signup',
     component: ClientSignupComponent,
@@ -15,5 +19,12 @@ export const appRoutes: Routes = [
     component: ReservationFormComponent,
     canActivate: [AuthGuard],
   },
+  {
+    path: 'employees',
+    component: EmployeesComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: '404', component: Error404Component },
+  { path: '**', redirectTo: '/404' },
   { path: '', redirectTo: '/', pathMatch: 'full' },
 ];
