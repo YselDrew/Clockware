@@ -15,6 +15,7 @@ import { EmployeesComponent } from './employees/employees.component';
 import { Error404Component } from './errors/404.component';
 
 import { AuthGuard } from './client-signup/auth.guard';
+import { ReservationFormService } from './reservation-form/reservation-form.service';
 
 @NgModule({
   imports: [
@@ -31,7 +32,7 @@ import { AuthGuard } from './client-signup/auth.guard';
     EmployeesComponent,
     Error404Component,
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard, ReservationFormService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
