@@ -1,5 +1,26 @@
 <div class="main-info container text-center">
-  <h1>Available Clockmakers in your city</h1>
+  <h1>Available Clockmasters in your city</h1>
+  <div class="text-right">
+    <button (click)="changeDetails()" class="btn btn-primary">
+      Change Details
+    </button>
+  </div>
   <hr />
-  <span>Array of employees</span>
+  <div class="card-deck">
+    <div *ngFor="let employee of employees" class="col-md-4">
+      <employee-thumbnail [employee]="employee"> </employee-thumbnail>
+    </div>
+    <h3 *ngIf="!employees.length">
+      Unfortunatelly, we don't have free clockmasters for {{ options.time }}
+    </h3>
+  </div>
+  <div class="pagination">
+    <button disabled>
+      <fa name="arrow-left"> </fa>
+    </button>
+    <span>1</span>
+    <button>
+      <fa name="arrow-right"></fa>
+    </button>
+  </div>
 </div>
