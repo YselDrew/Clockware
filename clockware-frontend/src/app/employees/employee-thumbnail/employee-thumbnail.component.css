@@ -20,3 +20,25 @@
 .stars fa {
   margin-right: 5px;
 }
+
+.confirmation {
+  background: #f7f7f7;
+}
+
+.modal-header {
+  background-color: #f7f0f0;
+}
+
+.modal-body {
+  background-color: #f7f7f7;
+}
+
+.confirmation-text {
+  display: block;
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.strong-date {
+  font-weight: bold;
+}

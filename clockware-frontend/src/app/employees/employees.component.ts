@@ -15,184 +15,65 @@ export class EmployeesComponent implements OnInit {
     private employeeService: EmployeeService
   ) {}
 
-  page = 1;
-  limit = 9;
-  options: any;
+  reservationDetails: any;
+  queryParams: any;
 
   employees: any;
+  pagination: any;
 
   ngOnInit() {
-    this.reservationFormService.currentSearchOptions.subscribe((options) => {
-      this.options = {
-        cityId: options.cityId,
-        time: options.time,
-        page: this.page,
-        limit: this.limit,
-      };
-    });
+    this.reservationFormService.currentSearchOptions.subscribe(
+      ({ clockSizeId, cityId, time }) => {
+        this.reservationDetails = {
+          cityId,
+          clockSizeId,
+          time,
+        };
+      }
+    );
 
-    this.employeeService
-      .getEmployees(this.options)
-      .subscribe((employees: any) => {
-        this.employees = employees.data;
-      });
+    this.queryParams = {
+      time: this.reservationDetails.time,
+      cityId: this.reservationDetails.cityId,
+      // cityId: 1,
+      // time: '2020-08-23T16:31:00.000Z',
+      page: 1,
+      limit: 9,
+    };
+
+    console.log(this.queryParams);
+
+    this.getEmployees();
+  }
+
+  updateDetails(id: number) {
+    this.reservationDetails.employeeId = id;
+    console.log(this.reservationDetails);
   }
 
   changeDetails() {
     this.router.navigate(['/reservation']);
   }
-}
 
-// const temp = {
-//   data: [
-//     {
-//       id: 3,
-//       firstName: 'Darrell',
-//       lastName: 'Travis',
-//       rate: 3,
-//       availableFrom: '2020-07-29T16:43:24.989Z',
-//       createdAt: '2020-07-29T10:06:44.104Z',
-//       updatedAt: '2020-07-29T14:21:56.957Z',
-//       cityId: 1,
-//       city: {
-//         id: 1,
-//         name: 'Dnipro',
-//         createdAt: '2020-07-29T10:05:47.624Z',
-//         updatedAt: '2020-07-29T10:05:47.624Z',
-//       },
-//     },
-//     {
-//       id: 4,
-//       firstName: 'James',
-//       lastName: 'Willis',
-//       rate: 4,
-//       availableFrom: '2020-07-29T10:06:44.104Z',
-//       createdAt: '2020-07-29T10:06:44.104Z',
-//       updatedAt: '2020-07-29T10:06:44.104Z',
-//       cityId: 1,
-//       city: {
-//         id: 1,
-//         name: 'Dnipro',
-//         createdAt: '2020-07-29T10:05:47.624Z',
-//         updatedAt: '2020-07-29T10:05:47.624Z',
-//       },
-//     },
-//     {
-//       id: 6,
-//       firstName: 'Rod',
-//       lastName: 'Cutler',
-//       rate: 5,
-//       availableFrom: '2020-07-29T10:06:44.104Z',
-//       createdAt: '2020-07-29T10:06:44.104Z',
-//       updatedAt: '2020-07-29T10:06:44.104Z',
-//       cityId: 1,
-//       city: {
-//         id: 1,
-//         name: 'Dnipro',
-//         createdAt: '2020-07-29T10:05:47.624Z',
-//         updatedAt: '2020-07-29T10:05:47.624Z',
-//       },
-//     },
-//     {
-//       id: 8,
-//       firstName: 'Hugo',
-//       lastName: 'Barrera',
-//       rate: 3,
-//       availableFrom: '2020-07-29T10:06:44.104Z',
-//       createdAt: '2020-07-29T10:06:44.104Z',
-//       updatedAt: '2020-07-29T10:06:44.104Z',
-//       cityId: 1,
-//       city: {
-//         id: 1,
-//         name: 'Dnipro',
-//         createdAt: '2020-07-29T10:05:47.624Z',
-//         updatedAt: '2020-07-29T10:05:47.624Z',
-//       },
-//     },
-//     {
-//       id: 10,
-//       firstName: 'Gilbert',
-//       lastName: 'Gordon',
-//       rate: 2,
-//       availableFrom: '2020-07-29T10:06:44.104Z',
-//       createdAt: '2020-07-29T10:06:44.104Z',
-//       updatedAt: '2020-07-29T10:06:44.104Z',
-//       cityId: 1,
-//       city: {
-//         id: 1,
-//         name: 'Dnipro',
-//         createdAt: '2020-07-29T10:05:47.624Z',
-//         updatedAt: '2020-07-29T10:05:47.624Z',
-//       },
-//     },
-//     {
-//       id: 11,
-//       firstName: 'Richard',
-//       lastName: 'Wright',
-//       rate: 4,
-//       availableFrom: '2020-07-29T10:06:44.104Z',
-//       createdAt: '2020-07-29T10:06:44.104Z',
-//       updatedAt: '2020-07-29T10:06:44.104Z',
-//       cityId: 1,
-//       city: {
-//         id: 1,
-//         name: 'Dnipro',
-//         createdAt: '2020-07-29T10:05:47.624Z',
-//         updatedAt: '2020-07-29T10:05:47.624Z',
-//       },
-//     },
-//     {
-//       id: 13,
-//       firstName: 'John',
-//       lastName: 'Klingensmith',
-//       rate: 4,
-//       availableFrom: '2020-07-29T10:06:44.104Z',
-//       createdAt: '2020-07-29T10:06:44.104Z',
-//       updatedAt: '2020-07-29T10:06:44.104Z',
-//       cityId: 1,
-//       city: {
-//         id: 1,
-//         name: 'Dnipro',
-//         createdAt: '2020-07-29T10:05:47.624Z',
-//         updatedAt: '2020-07-29T10:05:47.624Z',
-//       },
-//     },
-//     {
-//       id: 14,
-//       firstName: 'George',
-//       lastName: 'Ironsmith',
-//       rate: 5,
-//       availableFrom: '2020-07-29T10:06:44.104Z',
-//       createdAt: '2020-07-29T10:06:44.104Z',
-//       updatedAt: '2020-07-29T10:06:44.104Z',
-//       cityId: 1,
-//       city: {
-//         id: 1,
-//         name: 'Dnipro',
-//         createdAt: '2020-07-29T10:05:47.624Z',
-//         updatedAt: '2020-07-29T10:05:47.624Z',
-//       },
-//     },
-//     {
-//       id: 15,
-//       firstName: 'Arthur',
-//       lastName: 'Trust',
-//       rate: 1,
-//       availableFrom: '2020-07-29T10:06:44.104Z',
-//       createdAt: '2020-07-29T10:06:44.104Z',
-//       updatedAt: '2020-07-29T10:06:44.104Z',
-//       cityId: 1,
-//       city: {
-//         id: 1,
-//         name: 'Dnipro',
-//         createdAt: '2020-07-29T10:05:47.624Z',
-//         updatedAt: '2020-07-29T10:05:47.624Z',
-//       },
-//     },
-//   ],
-//   pagination: {
-//     page: 1,
-//     total: 7,
-//     limit: 9,
-//   },
-// };
+  nextPage() {
+    this.queryParams.page++;
+    this.getEmployees();
+  }
+
+  previousPage() {
+    this.queryParams.page--;
+    this.getEmployees();
+  }
+
+  getEmployees() {
+    this.employeeService
+      .getEmployees(this.queryParams)
+      .subscribe((employeesData: any) => {
+        this.employees = employeesData.data;
+        this.pagination = employeesData.pagination;
+
+        this.queryParams.page = this.pagination.page;
+        this.queryParams.limit = this.pagination.limit;
+      });
+  }
+}

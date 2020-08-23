@@ -7,20 +7,30 @@
   </div>
   <hr />
   <div class="card-deck">
+    <h1 *ngIf="!employees">
+      <fa name="cog" animation="spin"></fa>
+    </h1>
+    <!-- <h3 *ngIf="!employees?.length">
+      Unfortunatelly, we don't have free clockmasters for
+      {{ reservationDetails.time }}
+    </h3> -->
     <div *ngFor="let employee of employees" class="col-md-4">
-      <employee-thumbnail [employee]="employee"> </employee-thumbnail>
+      <employee-thumbnail
+        [employee]="employee"
+        [time]="queryParams.time"
+        (idEvent)="updateDetails($event)"
+      ></employee-thumbnail>
     </div>
-    <h3 *ngIf="!employees.length">
-      Unfortunatelly, we don't have free clockmasters for {{ options.time }}
-    </h3>
   </div>
-  <div class="pagination">
-    <button disabled>
+  <div *ngIf="employees?.length" class="pagination">
+    <button (click)="previousPage()">
       <fa name="arrow-left"> </fa>
     </button>
-    <span>1</span>
-    <button>
+    <span>{{ pagination?.page }}</span>
+    <button (click)="nextPage()">
       <fa name="arrow-right"></fa>
     </button>
   </div>
 </div>
+
+<!-- <ng-template #noClockmasters></ng-template> -->

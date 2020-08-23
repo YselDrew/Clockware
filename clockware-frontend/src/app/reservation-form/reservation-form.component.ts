@@ -53,7 +53,7 @@ export class ReservationFormComponent implements OnInit {
 
   findEmployee(formValues: any) {
     const reservationDetails = {
-      sizeId: formValues.size,
+      clockSizeId: formValues.size,
       cityId: formValues.city,
       time: `${formValues.date}:00.000Z`, // FIX: check how to fix that properly
     };
