@@ -19,7 +19,11 @@ export class EmployeesComponent implements OnInit {
   queryParams: any;
 
   employees: any;
-  pagination: any;
+  private pagination: any;
+
+  private date: string;
+  private hours: string;
+  private currentEmployee: any;
 
   ngOnInit() {
     this.reservationFormService.currentSearchOptions.subscribe(
@@ -35,7 +39,7 @@ export class EmployeesComponent implements OnInit {
     this.queryParams = {
       time: this.reservationDetails.time,
       cityId: this.reservationDetails.cityId,
-      // cityId: 1,
+      // cityId: 2,
       // time: '2020-08-23T16:31:00.000Z',
       page: 1,
       limit: 9,
@@ -44,11 +48,20 @@ export class EmployeesComponent implements OnInit {
     console.log(this.queryParams);
 
     this.getEmployees();
+    this.formatTime();
   }
 
-  updateDetails(id: number) {
+  addEmployeeId(id: number) {
     this.reservationDetails.employeeId = id;
-    console.log(this.reservationDetails);
+    this.currentEmployee = this.employees.find((employee) => {
+      return employee.id === id;
+    });
+  }
+
+  formatTime() {
+    const UtcDate = new Date(this.queryParams.time).toUTCString();
+    this.date = UtcDate.slice(0, -18);
+    this.hours = UtcDate.slice(16, -7);
   }
 
   changeDetails() {

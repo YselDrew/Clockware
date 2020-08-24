@@ -4,9 +4,11 @@
   </div>
   <div class="card-body">
     <div class="stars">
-      <fa name="star" *ngFor="let item of amountOfStars(employee?.rate)"></fa>
+      <fa
+        name="star"
+        *ngFor="let item of calcAmountOfStars(employee?.rate)"
+      ></fa>
     </div>
-
     <button
       id="{{ employee?.id }}"
       class="btn btn-warning"
@@ -18,38 +20,3 @@
     </button>
   </div>
 </div>
-
-<!-- Modal -->
-<div
-  class="modal fade"
-  id="reserveModal"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="reserveModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3>Confirmation</h3>
-      </div>
-      <div class="modal-body">
-        <div class="confirmation-text">
-          <span
-            >Confirm reservation on
-            <span class="strong-date">
-              {{ date }}
-            </span>
-            at <span class="strong-date">{{ hours }}</span
-            >. Are you sure?</span
-          >
-        </div>
-        <button type="button" class="btn btn-primary">Confirm</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">
-          Cancel
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Modal -->
