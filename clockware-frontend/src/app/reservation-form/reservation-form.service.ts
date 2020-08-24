@@ -22,6 +22,6 @@ export class ReservationFormService {
   }
 
   updateSearchOptions(options: any) {
-    this.defaultSearchOptions.next({ ...options });
+    this.defaultSearchOptions.next(options);
   }
 }

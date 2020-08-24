@@ -7,6 +7,7 @@ import { EmployeesComponent } from './employees/employees.component';
 import { Error404Component } from './errors/404.component';
 
 import { AuthGuard } from './client-signup/auth.guard';
+import { ReservationGuard } from './reservation-form/reservation.guard';
 
 export const appRoutes: Routes = [
   { path: '', component: StartPageComponent },
@@ -22,7 +23,7 @@ export const appRoutes: Routes = [
   {
     path: 'employees',
     component: EmployeesComponent,
-    canActivate: [AuthGuard],
+    canActivate: [ReservationGuard],
   },
   { path: '404', component: Error404Component },
   { path: '**', redirectTo: '/404' },

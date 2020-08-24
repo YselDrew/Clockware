@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { ReservationFormService } from '../reservation-form/reservation-form.service';
 import { EmployeeService } from './employees.service';
+import { ToastrService } from '../shared/toastr.service';
 
 @Component({
   templateUrl: './employees.component.html',
@@ -12,12 +13,14 @@ export class EmployeesComponent implements OnInit {
   constructor(
     private router: Router,
     private reservationFormService: ReservationFormService,
-    private employeeService: EmployeeService
+    private employeeService: EmployeeService,
+    private toastr: ToastrService
   ) {}
 
   reservationDetails: any;
   queryParams: any;
 
+  client: any = JSON.parse(localStorage.getItem('client') || '{}');
   employees: any;
   private pagination: any;
 
@@ -31,13 +34,14 @@ export class EmployeesComponent implements OnInit {
         this.reservationDetails = {
           cityId,
           clockSizeId,
-          time,
+          date: time,
+          clientId: this.client.id,
         };
       }
     );
 
     this.queryParams = {
-      time: this.reservationDetails.time,
+      time: this.reservationDetails.date,
       cityId: this.reservationDetails.cityId,
       // cityId: 2,
       // time: '2020-08-23T16:31:00.000Z',
@@ -76,6 +80,19 @@ export class EmployeesComponent implements OnInit {
   previousPage() {
     this.queryParams.page--;
     this.getEmployees();
+  }
+
+  createReservation() {
+    // console.log(this.reservationDetails);
+    this.employeeService.createReservation(this.reservationDetails).subscribe(
+      (reservation) => {
+        this.toastr.success('Reservation created');
+        this.router.navigate(['/']);
+      },
+      (error) => {
+        this.toastr.error(`Reservation creation failed`);
+      }
+    );
   }
 
   getEmployees() {

@@ -47,10 +47,6 @@ export class ReservationFormComponent implements OnInit {
     this.loaded = true; // FIX: add inside subscribe
   }
 
-  updateOptions(options: any) {
-    this.reservationFormService.updateSearchOptions(options);
-  }
-
   findEmployee(formValues: any) {
     const reservationDetails = {
       clockSizeId: formValues.size,
@@ -58,7 +54,7 @@ export class ReservationFormComponent implements OnInit {
       time: `${formValues.date}:00.000Z`, // FIX: check how to fix that properly
     };
 
-    this.updateOptions(reservationDetails);
+    this.reservationFormService.updateSearchOptions(reservationDetails);
     this.router.navigate(['/employees']);
   }
 

@@ -67,7 +67,14 @@
             >. Are you sure?</span
           >
         </div>
-        <button type="button" class="btn btn-primary">Confirm</button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="createReservation()"
+          data-dismiss="modal"
+        >
+          Confirm
+        </button>
         <button type="button" class="btn btn-default" data-dismiss="modal">
           Cancel
         </button>
