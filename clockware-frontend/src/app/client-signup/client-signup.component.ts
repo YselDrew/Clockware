@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { ClientSignupService } from './client-signup.service';
+import { ToastrService } from '../shared/toastr.service';
 
 @Component({
   selector: 'app-signup-form',
@@ -20,7 +21,8 @@ export class ClientSignupComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private clientSignupService: ClientSignupService
+    private clientSignupService: ClientSignupService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit() {
@@ -58,9 +60,11 @@ export class ClientSignupComponent implements OnInit {
         this.recievedClient = client;
         this.clientSignupService.addToLocalStorage(this.recievedClient);
         this.router.navigate(['/reservation']);
-        console.log(this.recievedClient);
       },
-      (error) => console.log(error)
+      (error) => {
+        console.log(error);
+        this.toastr.error('Server error occured');
+      }
     );
   }
 

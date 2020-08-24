@@ -55,6 +55,11 @@ export class EmployeesComponent implements OnInit {
     this.formatTime();
   }
 
+  changeUser() {
+    localStorage.removeItem('client');
+    this.router.navigate(['/signup']);
+  }
+
   addEmployeeId(id: number) {
     this.reservationDetails.employeeId = id;
     this.currentEmployee = this.employees.find((employee) => {
@@ -96,14 +101,18 @@ export class EmployeesComponent implements OnInit {
   }
 
   getEmployees() {
-    this.employeeService
-      .getEmployees(this.queryParams)
-      .subscribe((employeesData: any) => {
+    this.employeeService.getEmployees(this.queryParams).subscribe(
+      (employeesData: any) => {
         this.employees = employeesData.data;
         this.pagination = employeesData.pagination;
 
         this.queryParams.page = this.pagination.page;
         this.queryParams.limit = this.pagination.limit;
-      });
+      },
+      (error) => {
+        console.log(error);
+        this.toastr.error('Server error occured');
+      }
+    );
   }
 }

@@ -23,12 +23,10 @@ export class ReservationGuard implements CanActivate {
     });
 
     if (Object.keys(this.options).length) {
-      console.log(this.options, true);
       return true;
     }
 
     this.router.navigate(['/reservation']);
-    console.log(this.options, false);
     return false;
   }
 }
