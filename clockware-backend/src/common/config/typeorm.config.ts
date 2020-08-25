@@ -1,4 +1,5 @@
 import * as dotenv from 'dotenv';
+import { DatabaseType } from 'typeorm';
 dotenv.config();
 
 import { Admin } from '../../modules/admin/admin.entity';
@@ -8,10 +9,10 @@ import { ClockSize } from '../../modules/clockSize/clockSize.entity';
 import { Employee } from '../../modules/employee/employee.entity';
 import { Reservation } from '../../modules/reservation/reservation.entity';
 
-export = {
+export const connectionOptions: any = {
   host: process.env.HOST,
-  type: process.env.TYPE,
-  port: process.env.PORT,
+  type: process.env.TYPE as DatabaseType,
+  port: Number(process.env.PORT),
   username: process.env.USER,
   password: process.env.PASSWORD,
   database: process.env.DATABASE,

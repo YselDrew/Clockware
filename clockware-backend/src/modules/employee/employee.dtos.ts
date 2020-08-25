@@ -13,3 +13,14 @@ export const updateEmployeeDto = Joi.object().keys({
   cityId: Joi.number().positive(),
   rate: Joi.number().positive().max(5),
 });
+
+export const getEmployeesDto = Joi.object().keys({
+  page: Joi.number(),
+  limit: Joi.number(),
+  time: Joi.date(),
+  cityId: Joi.number().positive(),
+});
+
+export const employeeIdDto = Joi.object().keys({
+  id: Joi.number().positive(),
+});

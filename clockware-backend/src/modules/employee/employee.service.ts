@@ -8,12 +8,12 @@ import { IOffset, IPaginatedData } from '../../common/interfaces/pagination.inte
 import { IEmployeeUpdates } from '../../common/interfaces/employee.interfaces';
 
 class EmployeeService {
-  public async findMany(query: any): Promise<IPaginatedData<Employee[]>> {
-    const time: Date = query.time;
-    const cityId = parseInt(query.cityId, 10);
+  public async findMany(query: qs.ParsedQs): Promise<IPaginatedData<Employee[]>> {
+    const time = query.time;
+    const cityId = Number(query.cityId);
 
-    const page = parseInt(query.page, 10);
-    const limit = parseInt(query.limit, 10);
+    const page = Number(query.page);
+    const limit = Number(query.limit);
 
     return getManager().transaction(async (transactionalEntityManager) => {
       const total: number = await transactionalEntityManager.getRepository(Employee).count({

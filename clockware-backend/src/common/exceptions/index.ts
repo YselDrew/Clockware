@@ -1,4 +1,4 @@
 import { NotFound } from './notFound';
-import { ValidationError } from './validationError';
+import { ValidationError, IValidationError } from './validationError';
 
-export { NotFound, ValidationError };
+export { NotFound, ValidationError, IValidationError };
