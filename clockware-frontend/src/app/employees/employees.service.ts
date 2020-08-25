@@ -13,4 +13,9 @@ export class EmployeeService {
       params,
     });
   }
+
+  createReservation(reservation: any) {
+    // add to another service
+    return this.http.post(`${this.api}/reservations`, reservation);
+  }
 }

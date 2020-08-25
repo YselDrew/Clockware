@@ -7,7 +7,6 @@ import { ReservationFormService } from './reservation-form.service';
 @Component({
   templateUrl: './reservation-form.component.html',
   styleUrls: ['../shared/styles/form.styles.css'],
-  providers: [ReservationFormService],
 })
 export class ReservationFormComponent implements OnInit {
   makeReservationForm: FormGroup;
@@ -48,14 +47,14 @@ export class ReservationFormComponent implements OnInit {
     this.loaded = true; // FIX: add inside subscribe
   }
 
-  findEmployee(formValues) {
+  findEmployee(formValues: any) {
     const reservationDetails = {
-      sizeId: formValues.size,
+      clockSizeId: formValues.size,
       cityId: formValues.city,
       time: `${formValues.date}:00.000Z`, // FIX: check how to fix that properly
     };
-    console.log(reservationDetails);
 
+    this.reservationFormService.updateSearchOptions(reservationDetails);
     this.router.navigate(['/employees']);
   }
 

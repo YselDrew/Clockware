@@ -19,6 +19,14 @@ select:focus {
   border: 1px solid lightgrey;
 }
 
+.btn-toolbar {
+  margin-top: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
 em {
   float: right;
   color: #e05c65;
