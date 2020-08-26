@@ -1,5 +1,87 @@
 <div class="main-info container text-center">
-  <h1>Available Clockmakers in your city</h1>
+  <h1>Available Clockmasters in your city</h1>
+  <div class="btn-toolbar">
+    <button (click)="changeDetails()" class="btn btn-primary">
+      Change Details
+    </button>
+    <button (click)="changeUser()" class="btn btn-default">
+      Change User
+    </button>
+  </div>
   <hr />
-  <span>Array of employees</span>
+  <div class="card-deck">
+    <h1 *ngIf="!employees">
+      <fa name="cog" animation="spin"></fa>
+    </h1>
+    <h3 *ngIf="!employees?.length && employees">
+      Unfortunatelly, we don't have free clockmasters for
+      <strong>
+        {{ date }}
+      </strong>
+      at
+      <strong>
+        {{ hours }}
+      </strong>
+    </h3>
+    <div *ngFor="let employee of employees" class="col-md-4">
+      <employee-thumbnail
+        [employee]="employee"
+        (idEvent)="addEmployeeId($event)"
+      ></employee-thumbnail>
+    </div>
+  </div>
+  <div *ngIf="employees?.length" class="pagination">
+    <button (click)="previousPage()">
+      <fa name="arrow-left"> </fa>
+    </button>
+    <span>{{ pagination?.page }}</span>
+    <button (click)="nextPage()">
+      <fa name="arrow-right"></fa>
+    </button>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="reserveModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="reserveModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Confirmation</h3>
+      </div>
+      <div class="modal-body">
+        <div class="confirmation-text">
+          <span
+            >Reserving
+            <strong>
+              {{ currentEmployee?.firstName }}
+              {{ currentEmployee?.lastName }}
+            </strong>
+            to
+            <strong>
+              {{ date }}
+            </strong>
+            at <strong>{{ hours }}</strong
+            >. Are you sure?</span
+          >
+        </div>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="createReservation()"
+          data-dismiss="modal"
+        >
+          Confirm
+        </button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

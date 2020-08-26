@@ -1,9 +1,9 @@
 export class BaseHttpError {
   public statusCode: number;
-  public error: any;
+  public errorMessage: string;
 
-  constructor(statusCode: number, error: any) {
+  constructor(statusCode: number, errorMessage: string) {
     this.statusCode = statusCode;
-    this.error = error;
+    this.errorMessage = errorMessage;
   }
 }

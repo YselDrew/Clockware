@@ -1,0 +1,22 @@
+<div class="thumbnail card text-white mb-3">
+  <div class="card-header">
+    <span>{{ employee?.firstName }} {{ employee?.lastName }}</span>
+  </div>
+  <div class="card-body">
+    <div class="stars">
+      <fa
+        name="star"
+        *ngFor="let item of calcAmountOfStars(employee?.rate)"
+      ></fa>
+    </div>
+    <button
+      id="{{ employee?.id }}"
+      class="btn btn-warning"
+      data-toggle="modal"
+      data-target="#reserveModal"
+      (click)="getId(employee?.id)"
+    >
+      Reserve
+    </button>
+  </div>
+</div>

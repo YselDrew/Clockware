@@ -2,9 +2,10 @@ import express = require('express');
 import cors = require('cors');
 import * as bodyParser from 'body-parser';
 
-import { createConnection } from 'typeorm';
-import connectionOptions = require('./common/config/typeorm.config');
-import * as dotenv  from 'dotenv';
+import { createConnection, ConnectionOptions } from 'typeorm';
+import { connectionOptions } from './common/config/typeorm.config';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 import { router as clientRoutes } from './modules/client/client.routes';
 import { router as cityRoutes } from './modules/city/city.routes';
@@ -20,7 +21,6 @@ class Server {
   }
 
   private initExpress() {
-    dotenv.config()
     const app: express.Express = express();
     app.use(bodyParser.json({ limit: '5mb' }));
     app.use(cors());
@@ -33,9 +33,7 @@ class Server {
 
     app.use(errorHandler);
 
-    const PORT: number = process.env.SERVER_PORT
-      ? parseInt(process.env.SERVER_PORT, 10)
-      : 5000;
+    const PORT: number = process.env.SERVER_PORT ? parseInt(process.env.SERVER_PORT, 10) : 5000;
 
     return new Promise((resolve) => {
       app.listen(PORT, () => {
