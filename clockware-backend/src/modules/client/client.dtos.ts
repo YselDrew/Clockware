@@ -11,3 +11,7 @@ export const updateClientDto = Joi.object().keys({
   email: Joi.string().email(),
   city: Joi.string().min(2).max(25),
 });
+
+export const clientIdDto = Joi.object().keys({
+  id: Joi.number().positive(),
+});

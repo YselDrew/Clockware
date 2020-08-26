@@ -5,6 +5,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ClientSignupService } from './client-signup.service';
 import { ToastrService } from '../shared/toastr.service';
 
+// import { Client } from '../../../../clockware-backend/src/modules/client/client.entity';
+
 @Component({
   selector: 'app-signup-form',
   templateUrl: './client-signup.component.html',
@@ -56,7 +58,7 @@ export class ClientSignupComponent implements OnInit {
       city: formValues.city,
     };
     this.clientSignupService.postClient(newClient).subscribe(
-      (client: any) => {
+      (client: Client) => {
         this.recievedClient = client;
         this.clientSignupService.addToLocalStorage(this.recievedClient);
         this.router.navigate(['/reservation']);

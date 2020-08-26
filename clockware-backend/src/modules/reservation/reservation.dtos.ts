@@ -15,3 +15,7 @@ export const updateReservationDto = Joi.object().keys({
   clockSizeId: Joi.number().positive(),
   date: Joi.date(),
 });
+
+export const reservationIdDto = Joi.object().keys({
+  id: Joi.number().positive(),
+});

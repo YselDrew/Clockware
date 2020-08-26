@@ -1,16 +1,16 @@
 import { HttpStatusCode } from './httpStatusCode';
 
 export interface IValidationError {
-    message: string;
-    field: string;
+  message: string;
+  field: string | number;
 }
 
 export class ValidationError {
-    public statusCode: number;
-    public errors: IValidationError[];
+  public statusCode: number;
+  public errors: IValidationError[];
 
-    constructor(errors: any) {
-        this.statusCode = HttpStatusCode.BAD_REQUEST;
-        this.errors = errors;
-    }
+  constructor(errors: IValidationError[]) {
+    this.statusCode = HttpStatusCode.BAD_REQUEST;
+    this.errors = errors;
+  }
 }
