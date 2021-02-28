@@ -27,7 +27,7 @@ class Server {
 
     app.use('/clients', clientRoutes);
     app.use('/all-cities', cityRoutes);
-    app.use('/clockSizes', clockSizeRoutes);
+    app.use('/clock-sizes', clockSizeRoutes);
     app.use('/employees', employeeRoutes);
     app.use('/reservations', reservationRoutes);
 
