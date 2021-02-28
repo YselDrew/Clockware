@@ -33,6 +33,7 @@ class Server {
 
     app.use(errorHandler);
 
+    const hello = 'hello';
     const PORT: number = process.env.SERVER_PORT ? parseInt(process.env.SERVER_PORT, 10) : 5000;
 
     return new Promise((resolve) => {
