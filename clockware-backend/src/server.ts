@@ -26,7 +26,7 @@ class Server {
     app.use(cors());
 
     app.use('/clients', clientRoutes);
-    app.use('/cities', cityRoutes);
+    app.use('/allCities', cityRoutes);
     app.use('/clockSizes', clockSizeRoutes);
     app.use('/employees', employeeRoutes);
     app.use('/reservations', reservationRoutes);
